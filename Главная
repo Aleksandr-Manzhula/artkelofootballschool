@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARTKELO · Методичка тренера</title>
+<style>
+:root{--y:#FFD700;--y2:#E6C200;--k:#111;--l:#F6F6F6;--b:#E3E3E3;--r:#c00;--g:#555}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--l);color:var(--k);line-height:1.45;font-size:14px}
+header{background:var(--k);color:#fff;padding:12px 18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:40}
+.logo{background:var(--y);color:#000;font-weight:800;padding:5px 12px;border-radius:4px;letter-spacing:1px}
+header h1{font-size:15px;font-weight:600}
+header .s{font-size:11px;opacity:.75}
+#status{font-size:11px;background:#1a7f37;color:#fff;padding:2px 8px;border-radius:10px}
+nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.tab{background:none;border:1px solid #555;color:#ccc;padding:6px 12px;border-radius:16px;font-size:12px;font-weight:600;cursor:pointer;transition:.15s}
+.tab:hover{color:#fff;border-color:#888}
+.tab.on{background:var(--y);color:#000;border-color:var(--y)}
+.wrap{max-width:1280px;margin:0 auto;padding:16px}
+.panel{display:none}.panel.on{display:block}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.chip{background:#fff;border:2px solid var(--b);border-radius:16px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:.15s}
+.chip:hover{border-color:var(--y)}
+.chip.on{background:var(--k);color:var(--y);border-color:var(--k)}
+.grp{background:#fff;border:2px solid var(--b);border-radius:10px;padding:9px 16px;font-weight:700;cursor:pointer;font-size:13px;text-align:left;min-width:150px}
+.grp:hover{border-color:var(--y)}
+.grp.on{background:var(--y);border-color:var(--y)}
+.grp small{display:block;font-size:10px;color:#666;font-weight:400;margin-top:2px}
+.grp.on small{color:#333}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:5px;margin-bottom:12px}
+.wk{background:#fff;border:2px solid var(--b);border-radius:7px;padding:6px 8px;text-align:left;cursor:pointer;font-size:11px;transition:.15s}
+.wk:hover{border-color:var(--y)}
+.wk.on{background:var(--y);border-color:var(--y)}
+.wk b{display:block;font-size:12px;font-weight:700}
+.wk .h{color:var(--r);font-weight:700;font-size:10px;margin-top:2px}
+.ml{grid-column:1/-1;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#888;font-weight:700;margin-top:6px;margin-bottom:2px}
+.card{background:#fff;border:2px solid var(--b);border-radius:12px;padding:16px;margin-bottom:14px}
+.card h2{font-size:18px;margin-bottom:4px;line-height:1.25}
+.card .meta{font-size:12px;color:#666;margin-bottom:8px}
+.b{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:10px;background:var(--y);margin-right:3px;margin-top:3px}
+.b.k{background:var(--k);color:var(--y)}
+.b.r{background:#ffe0e0;color:var(--r)}
+.b.g{background:#e8e8e8;color:#333}
+.sess{background:#fff;border:2px solid var(--b);border-radius:12px;padding:14px;margin-bottom:12px}
+.sess-head{display:flex;gap:8px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;margin-bottom:8px}
+.sess-head .dn{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#888;font-weight:700}
+.sess-head .dt{font-size:13px;color:#333;font-weight:600;margin-top:1px}
+.sess-head .ti{font-size:11px;color:var(--g);background:var(--l);padding:2px 8px;border-radius:10px;margin-top:1px;display:inline-block}
+.sess-focus{font-size:15px;font-weight:700;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--y)}
+.phase{margin-bottom:10px}
+.phase-h{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--g);font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.phase-h .ph-time{background:var(--y);color:#000;padding:1px 7px;border-radius:8px;font-size:10px}
+.phase.warm .phase-h .ph-time{background:#d0e6ff}
+.phase.main .phase-h .ph-time{background:var(--y)}
+.phase.cool .phase-h .ph-time{background:#d4f5d4}
+.exr{display:flex;gap:8px;padding:7px 4px;border-top:1px solid #f0f0f0;cursor:pointer;align-items:center;border-radius:6px;transition:.1s}
+.exr:hover{background:#FFFBDF}
+.exr svg{width:34px;height:34px;flex:0 0 34px}
+.exr .t{flex:1;font-size:12px;line-height:1.35}
+.exr .t b{display:block;font-size:13px;font-weight:600}
+.exr .t span{color:#777;font-size:11.5px}
+.exr .d{font-size:11px;color:var(--g);font-weight:600;white-space:nowrap;padding-left:6px;background:var(--l);padding:3px 8px;border-radius:6px}
+.done{display:flex;gap:6px;font-size:12px;color:#666;margin-top:10px;padding-top:8px;border-top:2px dashed #eee}
+.done input{transform:scale(1.1);margin-right:4px}
+.tools{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.btn{background:var(--k);color:var(--y);border:none;padding:8px 14px;border-radius:7px;font-weight:700;font-size:12px;cursor:pointer;transition:.15s;font-family:inherit}
+.btn:hover{opacity:.88}
+.btn.alt{background:#fff;color:var(--k);border:2px solid var(--b)}
+.btn.alt:hover{border-color:var(--y)}
+.btn.red{background:var(--r);color:#fff}
+.btn.sm{padding:5px 10px;font-size:11px}
+input,select,textarea{padding:7px 10px;border:2px solid var(--b);border-radius:7px;font-size:13px;font-family:inherit;background:#fff;transition:.15s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--y)}
+input[type=text]{min-width:160px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.lib{background:#fff;border:2px solid var(--b);border-radius:10px;padding:12px;cursor:pointer;transition:.15s}
+.lib:hover{border-color:var(--y);box-shadow:0 3px 10px rgba(0,0,0,.06)}
+.lib .top{display:flex;gap:8px;align-items:center;margin-bottom:6px}
+.lib .top svg{width:38px;height:38px;flex:0 0 38px}
+.lib b{font-size:13px;line-height:1.25}
+.lib p{font-size:12px;color:#666;margin-top:5px}
+.tag{display:inline-block;font-size:10px;font-weight:700;background:var(--y);padding:1px 7px;border-radius:8px;margin-right:3px;margin-top:4px}
+.tag.g{background:#eee}
+.tag.c{background:#d0e6ff}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;align-items:center;justify-content:center;padding:14px;overflow-y:auto}
+.modal-bg.on{display:flex}
+.modal{background:#fff;border-radius:14px;max-width:720px;width:100%;max-height:92vh;overflow:auto;padding:24px;position:relative;margin:auto}
+.modal .x{position:absolute;top:8px;right:14px;background:none;border:none;font-size:26px;cursor:pointer;color:#888;line-height:1}
+.modal h2{font-size:20px;margin-bottom:8px;padding-right:32px}
+.svgbox{background:var(--l);border-radius:10px;padding:14px;text-align:center;margin:12px 0}
+.svgbox svg{width:220px;height:180px}
+.f{margin-bottom:10px}
+.f .l{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#999;font-weight:700;margin-bottom:2px}
+.f .v{font-size:13.5px;line-height:1.4}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:800px){.two{grid-template-columns:1fr}}
+.box{background:#fff;border:2px solid var(--b);border-radius:10px;padding:14px;margin-bottom:12px}
+.box h3{font-size:14px;margin-bottom:10px;border-bottom:2px solid var(--y);display:inline-block;padding-bottom:2px}
+.list{max-height:460px;overflow:auto;padding-right:4px}
+.item{display:flex;gap:8px;align-items:center;padding:6px;border-bottom:1px solid #eee;font-size:12px;flex-wrap:wrap}
+.item:hover{background:#FFFBDF}
+.item svg{width:28px;height:28px;flex:0 0 28px}
+.item .g{flex:1;min-width:130px}
+.item .g b{display:block;font-size:12.5px}
+.item input[type=text]{width:75px;padding:4px 6px;font-size:11px;min-width:0}
+.item select{padding:4px 6px;font-size:11px}
+.sm{font-size:11px;color:#777;line-height:1.35}
+canvas{width:100%;max-width:640px;height:250px;background:#fff;border-radius:8px;border:2px solid var(--b);display:block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{padding:6px 8px;border-bottom:1px solid #eee;text-align:left}
+th{background:#fafafa;font-size:10px;text-transform:uppercase;color:#666;letter-spacing:.5px}
+.meth h2{font-size:17px;margin:22px 0 8px;border-bottom:3px solid var(--y);display:inline-block;padding-bottom:3px}
+.meth h3{font-size:14px;margin:14px 0 4px;font-weight:700}
+.meth p,.meth li{font-size:13px;margin-bottom:6px;line-height:1.5}
+.meth ul{padding-left:20px}
+.src{font-size:11px;color:#999;font-style:italic;margin-top:4px}
+.gcard{background:#fff;border:2px solid var(--b);border-radius:10px;padding:12px;margin-bottom:10px}
+.gcard .row-mini{font-size:12px;color:#555;margin:4px 0}
+.sched{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.sched th,.sched td{padding:4px;border:1px solid #eee;text-align:left}
+.sched select,.sched input{width:100%;padding:5px;font-size:12px;min-width:0;border:1px solid var(--b)}
+.gtitle{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.gtitle input{font-size:14px;font-weight:700;width:130px}
+#printArea{display:none}
+@media print{
+ body.printing header,body.printing .wrap,body.printing footer{display:none!important}
+ body.printing #printArea{display:block!important;background:#fff;color:#000}
+ .pcard{border:1px solid #000;border-radius:6px;padding:10px;margin-bottom:10px;page-break-inside:avoid;background:#fff;color:#000}
+ .pcard h3{font-size:13px;margin-bottom:3px}
+ .pcard .pm{font-size:10px;color:#444;margin-bottom:6px}
+ .pcard .ph-h{font-size:10px;font-weight:700;margin:4px 0 2px;text-transform:uppercase;letter-spacing:.8px;color:#333;border-bottom:1px solid #ccc;display:inline-block}
+ .pcard ol,.pcard ul{font-size:11px;padding-left:16px;margin:0 0 4px}
+ .pcard li{margin-bottom:1px}
+ .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+}
+footer{background:var(--k);color:#fff;text-align:center;padding:12px;font-size:11px;opacity:.85;margin-top:20px}
+.note{background:#FFF8D6;border-left:4px solid var(--y);padding:10px 14px;border-radius:6px;font-size:12.5px;margin:10px 0}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:#666;margin-bottom:8px}
+.legend span{display:inline-flex;align-items:center;gap:4px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.legend .w i{background:#d0e6ff}
+.legend .m i{background:var(--y)}
+.legend .c i{background:#d4f5d4}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">ARTKELO</div>
+  <div><h1>Методичка тренера</h1><div class="s" id="seasonLbl">Мурино</div></div>
+  <span id="status">…</span>
+  <nav>
+    <button class="tab on" data-t="plan">План</button>
+    <button class="tab" data-t="grp">Группы</button>
+    <button class="tab" data-t="lib">Библиотека</button>
+    <button class="tab" data-t="build">Конструктор</button>
+    <button class="tab" data-t="test">Тесты</button>
+    <button class="tab" data-t="print">Печать</button>
+    <button class="tab" data-t="met">Методика</button>
+  </nav>
+</header>
+
+<div class="wrap">
+
+<section class="panel on" id="p-plan">
+  <div class="row" id="grpSel"></div>
+  <div id="grpInfo"></div>
+  <div class="legend">
+    <span class="w"><i></i>разминка</span>
+    <span class="m"><i></i>основная часть</span>
+    <span class="c"><i></i>заминка</span>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+  <div id="wdetail"></div>
+</section>
+
+<section class="panel" id="p-grp">
+  <div class="box">
+    <h3>Группы и расписание</h3>
+    <p class="sm" style="margin-bottom:10px">Меняйте названия, уровни, дни и время. Всё сохраняется в браузере автоматически. Кнопка «Сброс» вернёт исходное расписание.</p>
+    <div id="grpEditor"></div>
+    <button class="btn alt" onclick="resetGroups()" style="margin-top:10px">Сбросить всё к исходному</button>
+  </div>
+</section>
+
+<section class="panel" id="p-lib">
+  <div class="row">
+    <input type="text" id="q" placeholder="Поиск упражнения…">
+    <button class="btn alt" onclick="exportBase()">Скачать базу (JSON)</button>
+    <span class="sm" id="cnt"></span>
+  </div>
+  <div class="row" id="catF"></div>
+  <div class="row" id="ageF"></div>
+  <div class="grid" id="libGrid"></div>
+</section>
+
+<section class="panel" id="p-build">
+  <div class="two">
+    <div class="box">
+      <h3>Моя тренировка</h3>
+      <div class="row">
+        <select id="bGrp"></select>
+        <input type="text" id="bTitle" placeholder="Название тренировки">
+      </div>
+      <div id="bItems" class="list"></div>
+      <div class="tools">
+        <button class="btn" onclick="saveSess()">Сохранить</button>
+        <button class="btn alt" onclick="printBuilder()">Печать</button>
+        <button class="btn alt" onclick="clearB()">Очистить</button>
+      </div>
+      <h3 style="margin-top:16px">Сохранённые</h3>
+      <div id="bSaved" class="list"></div>
+    </div>
+    <div class="box">
+      <h3>Добавить упражнение</h3>
+      <input type="text" id="bq" placeholder="Поиск…" style="width:100%;margin-bottom:8px">
+      <div class="row" id="bCat"></div>
+      <div id="bPick" class="list"></div>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="p-test">
+  <div class="box">
+    <h3>Новый результат</h3>
+    <div class="row">
+      <input type="text" id="tName" placeholder="ФИО спортсмена">
+      <select id="tGrp"></select>
+      <input type="date" id="tDate">
+    </div>
+    <div class="row" id="tFields" style="align-items:flex-end"></div>
+    <button class="btn" onclick="saveTest()">Сохранить</button>
+  </div>
+  <div class="box">
+    <h3>Динамика</h3>
+    <div class="row"><select id="chAth"></select><select id="chT"></select></div>
+    <canvas id="chart" width="640" height="250"></canvas>
+  </div>
+  <div class="box">
+    <h3>Все результаты</h3>
+    <div id="tTable"></div>
+    <div class="tools"><button class="btn alt" onclick="exportCSV()">Скачать CSV</button></div>
+  </div>
+</section>
+
+<section class="panel" id="p-print">
+  <div class="box">
+    <h3>Печать карточек</h3>
+    <div class="row">
+      <select id="pGrp"></select>
+      <select id="pMonth"></select>
+      <button class="btn" onclick="printMonth()">Печать месяца</button>
+      <button class="btn alt" onclick="printCurWeek()">Печать текущей недели</button>
+    </div>
+    <p class="sm">Откроется системное окно печати. Выберите «Сохранить как PDF» или принтер. Карточки идут по две на странице.</p>
+  </div>
+</section>
+
+<section class="panel meth" id="p-met"></section>
+
+</div>
+
+<footer>ARTKELO · football-murino.ru · методичка тренера</footer>
+<div id="printArea"></div>
+<div class="modal-bg" id="mb"><div class="modal" id="mc"></div></div>
+
+<script>
+
+/* ==========================================================
+   БИБЛИОТЕКА SVG-СХЕМ (детальные пиктограммы)
+   ========================================================== */
+const SVG = {
+run:'<svg viewBox="0 0 100 100"><circle cx="58" cy="18" r="7" fill="#111"/><path d="M54 26 L42 48 L26 44 M42 48 L56 68 L40 84 M42 48 L68 58 L82 52" stroke="#111" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M70 44 L84 40" stroke="#111" stroke-width="4.5" stroke-linecap="round"/><path d="M16 34 L30 34 M12 46 L26 46 M10 58 L22 58" stroke="#E6C200" stroke-width="3.5" stroke-linecap="round"/></svg>',
+sprint:'<svg viewBox="0 0 100 100"><circle cx="54" cy="16" r="7" fill="#111"/><path d="M50 24 L36 44 L20 38 M36 44 L54 62 L38 80 M36 44 L64 52 L82 44" stroke="#111" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M64 40 L82 36" stroke="#111" stroke-width="4.5" stroke-linecap="round"/><path d="M12 78 L34 78 M10 88 L30 88" stroke="#E6C200" stroke-width="4.5" stroke-linecap="round"/><path d="M84 76 L94 76" stroke="#111" stroke-width="2.5"/></svg>',
+jump:'<svg viewBox="0 0 100 100"><circle cx="50" cy="15" r="7" fill="#111"/><path d="M50 22 L50 44 M50 44 L36 62 M50 44 L64 62 M36 62 L30 78 M64 62 L70 78" stroke="#111" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 80 L50 62" stroke="#E6C200" stroke-width="3.5"/><path d="M44 70 L50 62 L56 70" fill="#E6C200"/><path d="M30 88 L70 88" stroke="#111" stroke-width="3"/></svg>',
+squat:'<svg viewBox="0 0 100 100"><circle cx="50" cy="18" r="7" fill="#111"/><path d="M50 25 L50 48 M50 48 L32 66 M50 48 L68 66 M32 66 L32 86 M68 66 L68 86" stroke="#111" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 90 L76 90" stroke="#E6C200" stroke-width="4"/><path d="M50 34 L50 44" stroke="#E6C200" stroke-width="2.5"/></svg>',
+ladder:'<svg viewBox="0 0 100 100"><path d="M22 14 L14 86 M78 14 L86 86" stroke="#111" stroke-width="4.5"/><path d="M20 26 L80 26 M18 40 L82 40 M16 54 L84 54 M15 68 L85 68" stroke="#E6C200" stroke-width="5"/><path d="M24 78 L34 88 M74 78 L64 88" stroke="#111" stroke-width="2" stroke-dasharray="3"/></svg>',
+slalom:'<svg viewBox="0 0 100 100"><path d="M10 84 L90 84" stroke="#111" stroke-width="2.5"/><path d="M24 84 L20 62 L28 62 Z" fill="#E6C200" stroke="#111" stroke-width="1.8"/><path d="M50 84 L46 58 L54 58 Z" fill="#E6C200" stroke="#111" stroke-width="1.8"/><path d="M76 84 L72 56 L80 56 Z" fill="#E6C200" stroke="#111" stroke-width="1.8"/><path d="M14 92 Q32 60 50 72 Q66 82 86 50" stroke="#111" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/><circle cx="14" cy="92" r="4" fill="#111"/></svg>',
+cone:'<svg viewBox="0 0 100 100"><path d="M28 80 L50 20 L72 80 Z" fill="#E6C200" stroke="#111" stroke-width="3.5"/><path d="M34 62 L66 62" stroke="#111" stroke-width="2"/><path d="M40 44 L60 44" stroke="#111" stroke-width="2"/><path d="M20 86 L80 86" stroke="#111" stroke-width="4.5"/></svg>',
+ball:'<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="34" fill="#fff" stroke="#111" stroke-width="3.5"/><path d="M50 24 L64 36 L58 50 L42 50 L36 36 Z" fill="#111"/><path d="M22 54 L34 46 L42 60 L32 72 Z" fill="#111"/><path d="M78 54 L66 46 L58 60 L68 72 Z" fill="#111"/><path d="M50 78 L36 70 L42 56 L58 56 L64 70 Z" fill="#111"/></svg>',
+juggling:'<svg viewBox="0 0 100 100"><circle cx="50" cy="16" r="6" fill="#111"/><path d="M50 22 L50 46 M50 46 L38 68 M50 46 L62 68 M50 28 L34 40 M50 28 L66 40" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="28" cy="18" r="6" fill="#E6C200" stroke="#111" stroke-width="2"/><circle cx="72" cy="16" r="6" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M26 26 Q20 38 26 48" stroke="#111" stroke-width="1.5" fill="none" stroke-dasharray="3"/><path d="M74 24 Q80 36 74 46" stroke="#111" stroke-width="1.5" fill="none" stroke-dasharray="3"/></svg>',
+pass:'<svg viewBox="0 0 100 100"><circle cx="20" cy="32" r="6" fill="#111"/><path d="M20 38 L20 62 M20 46 L11 58 M20 46 L29 58 M20 62 L14 80 M20 62 L26 80" stroke="#111" stroke-width="3.5" fill="none" stroke-linecap="round"/><circle cx="82" cy="32" r="6" fill="none" stroke="#111" stroke-width="3.5"/><path d="M82 38 L82 62 M82 46 L73 58 M82 46 L91 58 M82 62 L76 80 M82 62 L88 80" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="72" r="7" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M28 70 L42 71" stroke="#111" stroke-width="2.5"/><path d="M38 67 L45 71 L38 75" fill="#111"/></svg>',
+trap:'<svg viewBox="0 0 100 100"><circle cx="44" cy="16" r="6" fill="#111"/><path d="M44 22 L44 48 M44 48 L28 66 M44 48 L58 62 M58 62 L54 82" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/><ellipse cx="38" cy="82" rx="14" ry="5" fill="none" stroke="#111" stroke-width="2.5"/><circle cx="74" cy="60" r="10" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M62 60 L54 60" stroke="#111" stroke-width="2" stroke-dasharray="3"/><path d="M58 56 L52 60 L58 64" fill="#111"/></svg>',
+shot:'<svg viewBox="0 0 100 100"><path d="M54 22 L92 22 L92 78 L54 78" fill="none" stroke="#111" stroke-width="3.5"/><path d="M60 26 L60 74 M68 24 L68 76 M76 24 L76 76 M84 24 L84 76" stroke="#ccc" stroke-width="1.5"/><circle cx="22" cy="70" r="8" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M34 68 L52 58" stroke="#111" stroke-width="3.5"/><path d="M46 54 L54 58 L48 65" fill="#111"/><path d="M16 88 L60 88" stroke="#111" stroke-width="3"/></svg>',
+head:'<svg viewBox="0 0 100 100"><circle cx="44" cy="38" r="7" fill="#111"/><path d="M44 45 L40 68 M40 55 L26 60 M40 55 L56 60 M40 68 L32 88 M40 68 L48 88" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="58" cy="16" r="10" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M52 24 L44 34" stroke="#111" stroke-width="2" stroke-dasharray="3"/><path d="M48 33 L44 34 L46 30" fill="#111"/></svg>',
+dribble:'<svg viewBox="0 0 100 100"><circle cx="52" cy="16" r="6" fill="#111"/><path d="M52 22 L46 48 M46 48 L34 68 M46 48 L58 66 M34 68 L30 86 M58 66 L64 84" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="22" cy="78" r="7" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M28 76 L38 72" stroke="#111" stroke-width="2" stroke-dasharray="3"/><path d="M34 69 L40 70 L36 76" fill="#111"/></svg>',
+duel:'<svg viewBox="0 0 100 100"><circle cx="32" cy="20" r="6" fill="#111"/><path d="M32 26 L32 52 M32 36 L22 48 M32 36 L42 48 M32 52 L26 72 M32 52 L38 72" stroke="#111" stroke-width="3.5" fill="none" stroke-linecap="round"/><circle cx="68" cy="20" r="6" fill="none" stroke="#111" stroke-width="3.5"/><path d="M68 26 L68 52 M68 36 L58 48 M68 36 L78 48 M68 52 L62 72 M68 52 L74 72" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="78" r="6" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M38 72 Q50 60 60 70" stroke="#111" stroke-width="2" stroke-dasharray="3" fill="none"/></svg>',
+two:'<svg viewBox="0 0 100 100"><circle cx="26" cy="24" r="6" fill="#111"/><path d="M26 30 L26 56 M26 40 L16 52 M26 40 L36 52 M26 56 L20 76 M26 56 L32 76" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="46" cy="20" r="6" fill="#111"/><path d="M46 26 L46 52 M46 36 L36 48 M46 36 L56 48 M46 52 L40 72 M46 52 L52 72" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="80" cy="42" r="6" fill="none" stroke="#111" stroke-width="3.5"/><path d="M80 48 L80 72 M80 58 L70 68 M80 58 L90 68 M80 72 L74 90 M80 72 L86 90" stroke="#111" stroke-width="3" fill="none"/><circle cx="56" cy="82" r="5" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M34 52 Q50 40 72 44" stroke="#111" stroke-width="2" stroke-dasharray="3" fill="none"/></svg>',
+three:'<svg viewBox="0 0 100 100"><circle cx="18" cy="24" r="5" fill="#111"/><circle cx="30" cy="54" r="5" fill="#111"/><circle cx="16" cy="76" r="5" fill="#111"/><circle cx="74" cy="30" r="5" fill="none" stroke="#111" stroke-width="2.8"/><circle cx="82" cy="66" r="5" fill="none" stroke="#111" stroke-width="2.8"/><circle cx="50" cy="52" r="6" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M24 26 L30 50 M30 58 L18 74 M36 52 L72 32 M34 56 L80 64" stroke="#111" stroke-width="1.6" stroke-dasharray="3" fill="none"/></svg>',
+rondo:'<svg viewBox="0 0 100 100"><rect x="12" y="12" width="76" height="76" fill="none" stroke="#111" stroke-width="3.5"/><circle cx="24" cy="24" r="5.5" fill="#111"/><circle cx="76" cy="24" r="5.5" fill="#111"/><circle cx="24" cy="76" r="5.5" fill="#111"/><circle cx="76" cy="76" r="5.5" fill="#111"/><circle cx="50" cy="16" r="5.5" fill="#111"/><circle cx="42" cy="50" r="5.5" fill="none" stroke="#111" stroke-width="2.8"/><circle cx="58" cy="50" r="5.5" fill="none" stroke="#111" stroke-width="2.8"/><circle cx="34" cy="42" r="5.5" fill="#E6C200" stroke="#111" stroke-width="1.8"/></svg>',
+match:'<svg viewBox="0 0 100 100"><rect x="6" y="18" width="88" height="64" fill="none" stroke="#111" stroke-width="3.5"/><line x1="50" y1="18" x2="50" y2="82" stroke="#111" stroke-width="2"/><circle cx="50" cy="50" r="11" fill="none" stroke="#111" stroke-width="2"/><circle cx="26" cy="34" r="4" fill="#111"/><circle cx="26" cy="64" r="4" fill="#111"/><circle cx="40" cy="50" r="4" fill="#111"/><circle cx="70" cy="30" r="4" fill="none" stroke="#111" stroke-width="2.5"/><circle cx="72" cy="62" r="4" fill="none" stroke="#111" stroke-width="2.5"/><circle cx="60" cy="46" r="4" fill="#E6C200" stroke="#111" stroke-width="1.5"/><rect x="6" y="32" width="10" height="36" fill="none" stroke="#111" stroke-width="2"/><rect x="84" y="32" width="10" height="36" fill="none" stroke="#111" stroke-width="2"/></svg>',
+relay:'<svg viewBox="0 0 100 100"><circle cx="24" cy="22" r="5" fill="#111"/><path d="M24 27 L20 52 M20 38 L10 46 M20 38 L30 46 M20 52 L14 72 M20 52 L28 72" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="38" y="44" width="24" height="6" rx="2" fill="#E6C200" stroke="#111" stroke-width="1.8" transform="rotate(-15 50 47)"/><circle cx="78" cy="26" r="5" fill="#111"/><path d="M78 31 L74 56 M74 42 L64 50 M74 42 L84 50 M74 56 L68 76 M74 56 L82 76" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M16 82 L84 82" stroke="#111" stroke-width="2" stroke-dasharray="4"/></svg>',
+circuit:'<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="32" fill="none" stroke="#ccc" stroke-width="2" stroke-dasharray="4"/><circle cx="50" cy="14" r="7" fill="#E6C200" stroke="#111" stroke-width="2"/><circle cx="78" cy="28" r="7" fill="#111"/><circle cx="86" cy="58" r="7" fill="#E6C200" stroke="#111" stroke-width="2"/><circle cx="64" cy="84" r="7" fill="#111"/><circle cx="32" cy="82" r="7" fill="#E6C200" stroke="#111" stroke-width="2"/><circle cx="14" cy="54" r="7" fill="#111"/><circle cx="22" cy="24" r="7" fill="#E6C200" stroke="#111" stroke-width="2"/></svg>',
+interval:'<svg viewBox="0 0 100 100"><path d="M10 72 L90 72" stroke="#111" stroke-width="3"/><rect x="16" y="58" width="14" height="14" fill="#E6C200" stroke="#111" stroke-width="1.8"/><rect x="40" y="58" width="14" height="14" fill="#E6C200" stroke="#111" stroke-width="1.8"/><rect x="64" y="58" width="14" height="14" fill="#E6C200" stroke="#111" stroke-width="1.8"/><path d="M10 82 L90 82" stroke="#111" stroke-width="2"/><path d="M23 42 L23 26 M47 42 L47 26 M71 42 L71 26" stroke="#111" stroke-width="2.5"/><path d="M18 30 L23 23 L28 30 M42 30 L47 23 L52 30 M66 30 L71 23 L76 30" fill="#111"/></svg>',
+stretch:'<svg viewBox="0 0 100 100"><circle cx="44" cy="18" r="7" fill="#111"/><path d="M44 25 L44 52 M44 38 L26 48 M44 38 L60 44 M44 52 L26 68 M44 52 L66 64" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M22 86 L56 86" stroke="#E6C200" stroke-width="4"/><path d="M26 68 L22 84 M66 64 L70 82" stroke="#111" stroke-width="3.5"/></svg>',
+breathe:'<svg viewBox="0 0 100 100"><circle cx="50" cy="20" r="8" fill="#111"/><path d="M50 28 L50 62 M50 62 L38 84 M50 62 L62 84 M50 40 L36 52 M50 40 L64 52" stroke="#111" stroke-width="4.5" fill="none" stroke-linecap="round"/><path d="M76 30 Q90 42 76 54" stroke="#E6C200" stroke-width="3.5" fill="none"/><path d="M24 30 Q10 42 24 54" stroke="#E6C200" stroke-width="3.5" fill="none"/></svg>',
+tag:'<svg viewBox="0 0 100 100"><circle cx="32" cy="24" r="7" fill="#111"/><path d="M32 31 L28 56 M28 42 L18 52 M28 42 L38 52 M28 56 L20 76 M28 56 L38 76" stroke="#111" stroke-width="3.5" fill="none" stroke-linecap="round"/><circle cx="72" cy="26" r="7" fill="none" stroke="#111" stroke-width="3.5"/><path d="M72 33 L68 58 M68 44 L58 54 M68 44 L78 54 M68 58 L60 78 M68 58 L78 78" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M44 40 Q56 32 64 38" stroke="#E6C200" stroke-width="3.5" fill="none" stroke-dasharray="4"/></svg>',
+hunters:'<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="34" fill="none" stroke="#ccc" stroke-width="2" stroke-dasharray="4"/><circle cx="50" cy="14" r="5" fill="#111"/><circle cx="78" cy="28" r="5" fill="#111"/><circle cx="86" cy="62" r="5" fill="#111"/><circle cx="60" cy="84" r="5" fill="#111"/><circle cx="30" cy="82" r="5" fill="#111"/><circle cx="14" cy="54" r="5" fill="#111"/><circle cx="24" cy="24" r="5" fill="#111"/><circle cx="50" cy="50" r="7" fill="#E6C200" stroke="#111" stroke-width="2"/></svg>',
+circle:'<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="32" fill="none" stroke="#111" stroke-width="2.5"/><circle cx="50" cy="16" r="5" fill="#111"/><circle cx="78" cy="32" r="5" fill="#111"/><circle cx="82" cy="64" r="5" fill="#111"/><circle cx="60" cy="82" r="5" fill="#111"/><circle cx="32" cy="80" r="5" fill="#111"/><circle cx="18" cy="56" r="5" fill="#111"/><circle cx="26" cy="28" r="5" fill="#111"/><circle cx="50" cy="50" r="6" fill="#E6C200" stroke="#111" stroke-width="2"/></svg>',
+numbers:'<svg viewBox="0 0 100 100"><rect x="12" y="20" width="20" height="60" fill="none" stroke="#111" stroke-width="2.5"/><rect x="40" y="20" width="20" height="60" fill="none" stroke="#111" stroke-width="2.5"/><rect x="68" y="20" width="20" height="60" fill="#E6C200" stroke="#111" stroke-width="2.5"/><text x="22" y="56" font-size="20" text-anchor="middle" fill="#111" font-family="Arial" font-weight="700">1</text><text x="50" y="56" font-size="20" text-anchor="middle" fill="#111" font-family="Arial" font-weight="700">2</text><text x="78" y="56" font-size="20" text-anchor="middle" fill="#111" font-family="Arial" font-weight="700">3</text></svg>',
+setpiece:'<svg viewBox="0 0 100 100"><path d="M8 88 L8 10 L92 10" fill="none" stroke="#111" stroke-width="3"/><path d="M8 88 L8 58 Q34 58 34 88" fill="none" stroke="#E6C200" stroke-width="3.5"/><circle cx="16" cy="80" r="5" fill="#E6C200" stroke="#111" stroke-width="2"/><circle cx="44" cy="40" r="5" fill="#111"/><circle cx="64" cy="28" r="5" fill="#111"/><circle cx="56" cy="56" r="5" fill="#111"/><path d="M20 76 Q36 44 54 36" stroke="#111" stroke-width="2.5" stroke-dasharray="4,2" fill="none"/><path d="M48 33 L56 32 L54 40" fill="#111"/></svg>',
+wall:'<svg viewBox="0 0 100 100"><path d="M18 86 L18 30 M36 86 L36 30 M54 86 L54 30" stroke="#111" stroke-width="4.5"/><path d="M18 40 L54 40 M18 54 L54 54 M18 68 L54 68" stroke="#111" stroke-width="2"/><circle cx="78" cy="58" r="10" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M66 58 L58 58" stroke="#111" stroke-width="2.5" stroke-dasharray="3"/><path d="M62 54 L56 58 L62 62" fill="#111"/></svg>',
+bench:'<svg viewBox="0 0 100 100"><rect x="12" y="40" width="76" height="10" fill="#E6C200" stroke="#111" stroke-width="3"/><path d="M22 50 L22 82 M78 50 L78 82 M18 82 L26 82 M74 82 L82 82" stroke="#111" stroke-width="4.5"/><circle cx="46" cy="24" r="5" fill="#111"/><path d="M46 29 L46 40 M46 34 L38 38 M46 34 L54 38" stroke="#111" stroke-width="3"/></svg>',
+hurdle:'<svg viewBox="0 0 100 100"><path d="M22 86 L22 28 M78 86 L78 28" stroke="#111" stroke-width="4.5"/><path d="M16 42 L84 42" stroke="#E6C200" stroke-width="6"/><path d="M30 86 L30 68 M70 86 L70 68" stroke="#111" stroke-width="2.5" stroke-dasharray="3"/><circle cx="50" cy="18" r="6" fill="#111"/><path d="M50 24 L50 32" stroke="#111" stroke-width="3"/></svg>',
+batut:'<svg viewBox="0 0 100 100"><ellipse cx="50" cy="64" rx="36" ry="13" fill="#E6C200" stroke="#111" stroke-width="3.5"/><path d="M20 70 L14 88 M80 70 L86 88" stroke="#111" stroke-width="3.5"/><circle cx="50" cy="22" r="6" fill="#111"/><path d="M50 28 L50 44 M50 44 L42 54 M50 44 L58 54" stroke="#111" stroke-width="3.5" fill="none"/><path d="M50 10 L50 18" stroke="#111" stroke-width="2.5"/><path d="M45 14 L50 8 L55 14" fill="#111"/></svg>',
+rope:'<svg viewBox="0 0 100 100"><circle cx="50" cy="16" r="6" fill="#111"/><path d="M50 22 L50 48 M50 48 L42 68 M50 48 L58 68 M50 28 L34 40 M50 28 L66 40" stroke="#111" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M26 18 Q18 50 26 82" stroke="#E6C200" stroke-width="2.5" fill="none"/><path d="M74 18 Q82 50 74 82" stroke="#E6C200" stroke-width="2.5" fill="none"/><path d="M26 18 Q50 2 74 18" stroke="#E6C200" stroke-width="2.5" fill="none"/><path d="M26 82 Q50 98 74 82" stroke="#E6C200" stroke-width="2.5" fill="none"/></svg>',
+medball:'<svg viewBox="0 0 100 100"><circle cx="50" cy="52" r="26" fill="#444" stroke="#111" stroke-width="3.5"/><path d="M32 38 Q50 30 68 38 M28 52 Q50 44 72 52 M32 66 Q50 74 68 66" stroke="#111" stroke-width="2.5" fill="none"/><path d="M16 82 L34 68" stroke="#E6C200" stroke-width="3.5"/><path d="M30 62 L36 68 L30 74" fill="#E6C200"/></svg>',
+pitch:'<svg viewBox="0 0 100 100"><rect x="6" y="16" width="88" height="68" fill="none" stroke="#111" stroke-width="3"/><line x1="50" y1="16" x2="50" y2="84" stroke="#111" stroke-width="2"/><circle cx="50" cy="50" r="12" fill="none" stroke="#111" stroke-width="2"/><rect x="6" y="32" width="14" height="36" fill="none" stroke="#111" stroke-width="2"/><rect x="80" y="32" width="14" height="36" fill="none" stroke="#111" stroke-width="2"/></svg>',
+transition:'<svg viewBox="0 0 100 100"><path d="M12 34 L88 34" stroke="#111" stroke-width="4.5"/><path d="M78 28 L90 34 L78 40" fill="#111"/><path d="M88 66 L12 66" stroke="#E6C200" stroke-width="4.5"/><path d="M22 60 L10 66 L22 72" fill="#E6C200"/><circle cx="50" cy="50" r="8" fill="#fff" stroke="#111" stroke-width="2.5"/></svg>',
+zonal:'<svg viewBox="0 0 100 100"><rect x="6" y="18" width="88" height="64" fill="none" stroke="#111" stroke-width="2.5"/><line x1="6" y1="40" x2="94" y2="40" stroke="#E6C200" stroke-width="2" stroke-dasharray="5,3"/><line x1="6" y1="60" x2="94" y2="60" stroke="#E6C200" stroke-width="2" stroke-dasharray="5,3"/><line x1="38" y1="18" x2="38" y2="82" stroke="#E6C200" stroke-width="2" stroke-dasharray="5,3"/><line x1="62" y1="18" x2="62" y2="82" stroke="#E6C200" stroke-width="2" stroke-dasharray="5,3"/><circle cx="22" cy="30" r="4.5" fill="#111"/><circle cx="50" cy="30" r="4.5" fill="#111"/><circle cx="78" cy="30" r="4.5" fill="#111"/></svg>',
+high_knees:'<svg viewBox="0 0 100 100"><circle cx="56" cy="18" r="7" fill="#111"/><path d="M52 26 L40 46 L24 40 M40 46 L52 58 L38 72 M40 46 L64 54 L80 46 M52 40 L68 36" stroke="#111" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 82 L82 82" stroke="#E6C200" stroke-width="3"/></svg>',
+side_step:'<svg viewBox="0 0 100 100"><circle cx="56" cy="20" r="7" fill="#111"/><path d="M56 28 L56 52 M56 40 L42 48 M56 40 L72 48 M56 52 L42 68 M56 52 L72 68" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M22 32 L32 32 M68 32 L78 32" stroke="#E6C200" stroke-width="3"/><path d="M26 28 L20 32 L26 36 M74 28 L80 32 L74 36" fill="#E6C200"/></svg>',
+arm_circles:'<svg viewBox="0 0 100 100"><circle cx="50" cy="24" r="7" fill="#111"/><path d="M50 31 L50 62 M50 62 L40 84 M50 62 L60 84" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M50 42 L30 50" stroke="#111" stroke-width="4" stroke-linecap="round"/><path d="M50 42 L70 34" stroke="#111" stroke-width="4" stroke-linecap="round"/><path d="M30 50 Q22 42 26 32 Q32 24 42 28" stroke="#E6C200" stroke-width="2.5" fill="none" stroke-dasharray="3"/><path d="M70 34 Q78 26 76 16 Q68 8 58 14" stroke="#E6C200" stroke-width="2.5" fill="none" stroke-dasharray="3"/></svg>',
+torso_twist:'<svg viewBox="0 0 100 100"><circle cx="50" cy="22" r="7" fill="#111"/><path d="M50 29 L50 62 M50 62 L40 84 M50 62 L60 84" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M50 40 L28 34" stroke="#111" stroke-width="4" stroke-linecap="round"/><path d="M50 40 L72 46" stroke="#111" stroke-width="4" stroke-linecap="round"/><path d="M30 30 Q20 40 28 54" stroke="#E6C200" stroke-width="2.5" fill="none" stroke-dasharray="3"/></svg>',
+forward_roll:'<svg viewBox="0 0 100 100"><path d="M14 84 Q22 74 30 78 Q34 88 26 90 Q18 90 14 84 Z" fill="#111"/><circle cx="56" cy="60" r="12" fill="none" stroke="#111" stroke-width="3.5"/><path d="M56 48 L56 40 M56 72 L56 80" stroke="#111" stroke-width="3"/><path d="M80 82 L92 82" stroke="#E6C200" stroke-width="3"/><path d="M30 60 Q46 40 66 52" stroke="#111" stroke-width="2" stroke-dasharray="4" fill="none"/><path d="M58 48 L66 52 L60 58" fill="#111"/></svg>',
+jg_wall:'<svg viewBox="0 0 100 100"><path d="M14 86 L14 30" stroke="#111" stroke-width="4.5"/><path d="M14 40 L14 80" stroke="#111" stroke-width="2" stroke-dasharray="3"/><circle cx="52" cy="20" r="6" fill="#111"/><path d="M52 26 L52 50 M52 50 L42 68 M52 50 L62 68 M52 34 L38 44 M52 34 L66 44" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="30" cy="54" r="7" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M20 56 L26 55" stroke="#111" stroke-width="2"/></svg>',
+sh_curl:'<svg viewBox="0 0 100 100"><path d="M54 22 L92 22 L92 78 L54 78" fill="none" stroke="#111" stroke-width="3.5"/><path d="M60 26 L60 74 M68 24 L68 76 M76 24 L76 76 M84 24 L84 76" stroke="#ccc" stroke-width="1.5"/><circle cx="22" cy="76" r="7" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M30 74 Q44 56 58 40" stroke="#111" stroke-width="3.5" fill="none"/><path d="M52 38 L60 38 L58 46" fill="#111"/></svg>',
+protect:'<svg viewBox="0 0 100 100"><circle cx="40" cy="18" r="6" fill="#111"/><path d="M40 24 L40 48 M40 34 L26 42 M40 34 L54 40 M40 48 L30 68 M40 48 L50 68" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="60" cy="22" r="6" fill="none" stroke="#111" stroke-width="3.5"/><path d="M60 28 L60 50 M60 38 L50 46 M60 38 L70 46 M60 50 L52 68 M60 50 L68 68" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="46" cy="76" r="7" fill="#E6C200" stroke="#111" stroke-width="2"/></svg>',
+give_go:'<svg viewBox="0 0 100 100"><circle cx="24" cy="28" r="6" fill="#111"/><path d="M24 34 L24 58 M24 44 L14 54 M24 44 L34 54 M24 58 L18 78 M24 58 L30 78" stroke="#111" stroke-width="3.5" fill="none" stroke-linecap="round"/><circle cx="74" cy="28" r="6" fill="#111"/><path d="M74 34 L74 58 M74 44 L64 54 M74 44 L84 54 M74 58 L68 78 M74 58 L80 78" stroke="#111" stroke-width="3.5" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="6" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M32 48 L44 50" stroke="#111" stroke-width="2.5"/><path d="M40 46 L46 50 L40 54" fill="#111"/><path d="M56 48 L68 44" stroke="#111" stroke-width="2.5"/><path d="M64 42 L70 44 L64 48" fill="#111"/><path d="M50 72 Q50 84 74 76" stroke="#111" stroke-width="2" stroke-dasharray="3" fill="none"/></svg>',
+overlap:'<svg viewBox="0 0 100 100"><rect x="10" y="20" width="80" height="60" fill="none" stroke="#111" stroke-width="2.5" stroke-dasharray="3"/><circle cx="26" cy="40" r="5" fill="#111"/><circle cx="52" cy="40" r="5" fill="#111"/><circle cx="26" cy="66" r="5" fill="#111"/><circle cx="70" cy="52" r="6" fill="#E6C200" stroke="#111" stroke-width="2"/><path d="M32 42 L46 40" stroke="#111" stroke-width="2.5"/><path d="M42 38 L48 40 L42 42" fill="#111"/><path d="M26 46 Q20 56 24 62" stroke="#111" stroke-width="2.5" fill="none"/><path d="M20 58 L24 64 L28 58" fill="#111"/><path d="M40 66 Q56 66 68 60" stroke="#E6C200" stroke-width="2.5" fill="none" stroke-dasharray="3"/><path d="M62 56 L70 60 L62 64" fill="#E6C200"/></svg>',
+offside:'<svg viewBox="0 0 100 100"><rect x="6" y="18" width="88" height="64" fill="none" stroke="#111" stroke-width="2.5"/><line x1="60" y1="18" x2="60" y2="82" stroke="#E6C200" stroke-width="2.5" stroke-dasharray="5,3"/><circle cx="30" cy="36" r="4.5" fill="#111"/><circle cx="40" cy="36" r="4.5" fill="#111"/><circle cx="70" cy="40" r="4.5" fill="#111"/><circle cx="78" cy="60" r="4.5" fill="#111"/><circle cx="58" cy="50" r="4" fill="#E6C200" stroke="#111" stroke-width="1.5"/><path d="M46 60 L70 44" stroke="#111" stroke-width="2" stroke-dasharray="3" fill="none"/></svg>',
+king:'<svg viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" fill="#FFF8D6" stroke="#111" stroke-width="3"/><circle cx="34" cy="34" r="5" fill="#111"/><circle cx="66" cy="34" r="5" fill="#111"/><circle cx="34" cy="66" r="5" fill="#111"/><circle cx="66" cy="66" r="5" fill="#111"/><circle cx="50" cy="50" r="6" fill="#E6C200" stroke="#111" stroke-width="2"/><text x="50" y="14" font-size="12" text-anchor="middle" fill="#111" font-family="Arial" font-weight="700">4v4</text></svg>',
+gate:'<svg viewBox="0 0 100 100"><path d="M30 24 L30 76 M70 24 L70 76" stroke="#E6C200" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="44" r="6" fill="#111"/><circle cx="50" cy="60" r="6" fill="#111"/><circle cx="20" cy="50" r="5" fill="none" stroke="#111" stroke-width="2.5"/><path d="M24 50 L36 50" stroke="#111" stroke-width="2"/><path d="M50 70 Q60 76 66 50" stroke="#111" stroke-width="2" stroke-dasharray="3" fill="none"/></svg>',
+goal:'<svg viewBox="0 0 100 100"><path d="M14 82 L14 24 L86 24 L86 82" fill="none" stroke="#111" stroke-width="4.5"/><path d="M18 28 L82 28 M24 38 L76 38 M30 48 L70 48 M36 58 L64 58 M42 68 L58 68" stroke="#ccc" stroke-width="1.8"/><path d="M8 86 L92 86" stroke="#111" stroke-width="4"/></svg>'
+};
+function svgOf(k){return SVG[k]||SVG.ball;}
+
+/* ==========================================================
+   БАЗА УПРАЖНЕНИЙ — ЧАСТЬ 1 (~100 записей)
+   ========================================================== */
+const EX = {};
+function ex(id,name,cat,ages,eq,desc,cue,dose,svg,src){
+  EX[id] = {id,name,cat,ages,eq,desc,cue,dose,svg,src};
+}
+
+/* --- ОБЩАЯ ФИЗПОДГОТОВКА И РАЗМИНКА --- */
+ex('jog_easy','Лёгкий бег (разминочный)','Разминка',['6-8','9-12','13-15'],'—','Спокойный бег в колонне по одному, 2–3 минуты.','Дыхание ровное, без ускорений.','2–3 мин','run','Лексаков, введение');
+ex('jog_var','Бег с изменением направления','Координация',['6-8','9-12','13-15'],'—','По сигналу тренера: вперёд, назад, влево, вправо, с поворотом.','Низкий центр тяжести, активная работа рук.','3–4 серии по 20–30 с','run','Лексаков, разд. 1');
+ex('jog_back','Бег спиной вперёд','Координация',['6-8','9-12','13-15'],'—','Бег спиной вперёд, взгляд через плечо.','Контроль пространства.','2 × 10 м','run','Мамуров, 2.2');
+ex('high_knees','Высокое поднимание бедра','Разминка',['6-8','9-12','13-15'],'—','Бег с высоким подниманием бедра, касание коленом ладони.','Корпус слегка вперёд, темп высокий.','2 × 10 м','high_knees','Мамуров, 2.2');
+ex('bum_kicks','Захлёст голени','Разминка',['6-8','9-12','13-15'],'—','Бег с захлёстом голени назад, пятка касается ягодиц.','Руки работают активно.','2 × 10 м','run','Мамуров, 2.2');
+ex('side_steps','Приставной шаг','Разминка',['6-8','9-12','13-15'],'—','Передвижение приставными шагами в стойке, влево и вправо.','Колени согнуты, взгляд вперёд.','2 × 10 м','side_step','Лексаков, разд. 1');
+ex('cross_steps','Скрестный шаг','Разминка',['9-12','13-15'],'—','Передвижение скрестным шагом.','Корпус поворачивается, не закрепощаться.','2 × 10 м','side_step','Лексаков, разд. 1');
+ex('ankling','Перекат с пятки на носок','Разминка',['6-8','9-12','13-15'],'—','Плавный перекат с пятки на носок и обратно.','Стопа работает целиком.','1 мин','run','Лексаков, разд. 1');
+ex('skips','Подскоки','Разминка',['6-8','9-12','13-15'],'—','Лёгкие подскоки с продвижением вперёд.','Мягкое приземление.','2 × 15 м','jump','Лексаков, разд. 1');
+ex('arm_circles','Вращения руками','Разминка',['6-8','9-12','13-15'],'—','Вращения вперёд и назад прямыми руками.','Амплитуда максимальная.','10+10','arm_circles','ОРУ');
+ex('torso_twist','Повороты корпуса','Разминка',['6-8','9-12','13-15'],'—','Повороты корпуса влево-вправо, руки на поясе.','Пятки не отрывать.','10+10','torso_twist','ОРУ');
+ex('leg_swings','Махи ногами','Разминка',['6-8','9-12','13-15'],'—','Махи прямой ногой вперёд-назад, в стороны.','Опорная нога чуть согнута.','10+10 каждой','stretch','ОРУ');
+ex('hip_rot','Вращения тазом','Разминка',['6-8','9-12','13-15'],'—','Круговые движения тазом.','Медленно, амплитудно.','10','torso_twist','ОРУ');
+ex('head_rot','Наклоны и повороты головы','Разминка',['6-8','9-12','13-15'],'—','Плавные наклоны головы, повороты, круговые.','Без резких движений.','1 мин','breathe','ОРУ');
+ex('jumping_jacks','Джампинг джек','Разминка',['6-8','9-12','13-15'],'—','Прыжки ноги вместе-врозь с хлопком над головой.','Ритмично, активно.','20–30','jump','ОРУ');
+ex('lunge_walk','Выпады в ходьбе','Разминка / Сила',['9-12','13-15'],'—','Выпады вперёд с продвижением.','Колено не выходит за носок.','2 × 10','squat','Мамуров, 2.2');
+ex('walk_lunge','Ходьба с наклоном','Разминка',['6-8','9-12','13-15'],'—','Ходьба с наклоном к противоположной стопе.','Тянуться, не сгибая колено.','10','stretch','ОРУ');
+ex('mobility_ankle','Круговые движения стопами','Разминка',['6-8','9-12','13-15'],'—','Круговые движения стопой в голеностопе.','Медленно, до конца амплитуды.','10+10','circle','Лексаков, разд. 9');
+ex('mobility_hip','Круговые движения бедром','Разминка',['6-8','9-12','13-15'],'—','Круговые движения согнутой ногой, опора на партнёра.','Амплитуда максимальная.','10+10','stretch','Лексаков, разд. 9');
+ex('legs_raise','Поднимание коленей на месте','Разминка',['6-8','9-12','13-15'],'—','Стоя на месте, поочерёдное поднимание колена к груди.','Темп средний.','20','high_knees','ОРУ');
+
+/* --- КООРДИНАЦИЯ --- */
+ex('ladder_b','Лестница: базовые шаги','Координация',['6-8','9-12','13-15'],'Лестница','Шаг в каждую ячейку, два шага в ячейку, шаг-хлопок.','Взгляд вперёд, не смотреть на ноги.','6–8 упр × 2 серии','ladder','Лексаков, разд. 1');
+ex('ladder_c','Лестница: сложные схемы','Координация',['9-12','13-15'],'Лестница','Скрестные шаги, ёлочка, прыжки на одной ноге.','Точность важнее скорости.','5–6 схем × 2','ladder','Лексаков, разд. 1');
+ex('slalom_run','Слалом между конусами без мяча','Координация',['6-8','9-12'],'Конусы','Оббегание конусов с ускорением на выходе.','Наклон корпуса внутрь поворота.','4–5 повторов','slalom','Лексаков, разд. 1');
+ex('zigzag','Бег змейкой','Координация',['6-8','9-12','13-15'],'Конусы','Бег змейкой между конусами.','Короткий шаг, работа рук.','4 × 20 м','slalom','Лексаков, разд. 1');
+ex('hop1','Прыжки на одной ноге','Координация',['6-8','9-12'],'—','Прыжки на одной ноге вперёд и на месте.','Мягкое приземление, колено не заваливать.','2–3 × 8–12','jump','Лексаков, разд. 1');
+ex('jump_side','Прыжки боком через линию','Координация',['6-8','9-12'],'Линия','Прыжки двумя ногами через линию влево-вправо.','Держать темп.','3 × 10–15','jump','Лексаков, разд. 1');
+ex('rot360','Повороты на 360° в беге','Координация',['6-8','9-12','13-15'],'—','Оборот на 360° во время бега.','Не терять скорость после поворота.','3 × 6','run','Лексаков, упр. 3');
+ex('balance1','Равновесие на одной ноге','Координация',['6-8','9-12'],'—','Стойка на одной ноге, варианты с закрытыми глазами.','Взгляд в одну точку.','2–3 × 30 с','stretch','Лексаков, разд. 1');
+ex('react_sig','Реакция на сигнал','Координация / Скорость',['6-8','9-12','13-15'],'—','Старты из разных положений по сигналу.','Первый шаг короткий и быстрый.','4–6 повторов','sprint','Мамуров, 2.2');
+ex('roll','Кувырки и перекаты','Координация',['6-8','9-12'],'Мат','Кувырок вперёд, назад, перекат через плечо.','Группировка, подбородок к груди.','3–4 повтора','forward_roll','Лексаков, разд. 1');
+ex('fwd_roll','Кувырок вперёд','Акробатика',['6-8','9-12'],'Мат','Кувырок вперёд из упора присев.','Подбородок к груди, спина круглая.','4–5','forward_roll','Лексаков, разд. 1');
+ex('bwd_roll','Кувырок назад','Акробатика',['9-12','13-15'],'Мат','Кувырок назад через плечо.','Не тянуть голову на себя.','4–5','forward_roll','Лексаков, разд. 1');
+ex('batut_b','Батут: базовые прыжки','Координация',['6-8','9-12'],'Батут','Прыжки на месте, с поворотом на 90°/180°.','Мягкое приземление на всю стопу.','3 × 10','batut','Лексаков, разд. 6');
+ex('batut_360','Батут: поворот 360°','Координация',['9-12','13-15'],'Батут','Прыжок с полным оборотом.','Сначала без оборота, затем с оборотом.','3 × 6','batut','Лексаков, разд. 6');
+ex('bench_w','Ходьба по скамейке','Координация',['6-8','9-12'],'Скамейка','Ходьба, повороты, перешагивание через предмет.','Руки в стороны для баланса.','3 прохода','bench','Лексаков, разд. 7');
+ex('bench_j','Прыжки через скамейку','Координация',['9-12','13-15'],'Скамейка','Прыжки через скамейку боком.','Контроль приземления.','3 × 8','bench','Лексаков, разд. 7');
+ex('hurdle','Прыжки через барьеры','Координация / Сила',['6-8','9-12','13-15'],'Барьеры','Прыжки через низкие барьеры двумя ногами и на одной.','Активная работа стоп.','3 × 5–6','hurdle','Лексаков, разд. 1');
+ex('rope_sk','Скакалка с заданием','Координация / Сила',['6-8','9-12','13-15'],'Скакалка','На двух, на одной, с поворотами.','Темп стабильный.','3 × 30 с','rope','Лексаков, разд. 1');
+ex('mirror','Зеркало','Координация',['6-8','9-12'],'—','Повтор движений партнёра как в зеркале.','Внимание на партнёра.','3 × 1 мин','duel','Лексаков, разд. 1');
+ex('shadow','Повтор за партнёром','Координация',['9-12','13-15'],'—','Повтор беговых и технических действий партнёра.','Точность повторения.','3 × 1 мин','duel','Лексаков, разд. 1');
+ex('cone_col','Реакция на цвет конуса','Координация',['6-8','9-12'],'Конусы','Бег к конусу названного цвета.','Быстрое принятие решения.','6–8 повторов','cone','Лексаков, разд. 1');
+
+/* --- ЧУВСТВО МЯЧА / ЖОНГЛИРОВАНИЕ --- */
+ex('jg_feet','Жонглирование стопами','Техника',['6-8','9-12','13-15'],'Мяч','Подбивание мяча стопой попеременно.','Мяч не выше колена.','3 подхода','juggling','Лексаков, упр. 6–7');
+ex('jg_thigh','Жонглирование бедром','Техника',['6-8','9-12','13-15'],'Мяч','Подбивание мяча бедром попеременно.','Корпус слегка назад.','3 подхода','juggling','Лексаков, упр. 6');
+ex('jg_head','Жонглирование головой','Техника',['9-12','13-15'],'Мяч','Подбивание головой на месте и в движении.','Удар лбом, шея напряжена.','3 × 8–10','head','Лексаков, разд. 2');
+ex('jg_mix','Смешанное жонглирование','Техника',['9-12','13-15'],'Мяч','Стопа – бедро – голова.','Контроль высоты мяча.','3 подхода','juggling','Лексаков, разд. 2');
+ex('jg_sole','Жонглирование подошвой','Техника',['9-12','13-15'],'Мяч','Подбивание мяча подошвой на низкой высоте.','Мяч близко к ноге.','3 подхода','juggling','Лексаков, разд. 2');
+ex('jg_wall','Жонглирование у стенки','Техника',['9-12','13-15'],'Мяч, стенка','Удар в стену и приём на подъём без опускания.','Контроль первого касания.','3 × 1 мин','jg_wall','Лексаков, разд. 2');
+ex('toss_c','Подбрасывание и ловля','Техника',['6-8','9-12'],'Мяч','Подброс руками, ловля; хлопок между.','Смотреть на мяч до захвата.','3 × 10','ball','Лексаков, упр. 1–2');
+ex('toss_t','Подброс + поворот 360°','Техника',['6-8','9-12'],'Мяч','Подбросить, повернуться, поймать.','Не терять равновесие.','2 × 6','rot360','Лексаков, упр. 3');
+ex('toss_s','Подброс + присед + ловля','Техника',['6-8','9-12'],'Мяч','Подбросить, присесть, поймать в приседе.','Спина прямая.','2 × 8','squat','Лексаков, упр. 5');
+ex('waist','Вращение мяча вокруг талии','Техника',['6-8','9-12'],'Мяч','Вращение по линии талии на месте и в движении.','Темп задаёт тренер.','3 × 30 с','circle','Лексаков, упр. 8');
+
+/* --- ВЕДЕНИЕ --- */
+ex('dr_in','Ведение внутренней стороной','Техника',['6-8','9-12','13-15'],'Мяч','По прямой и с изменением направления.','Мяч близко к ноге.','3 × 20 м','dribble','Лексаков, разд. 2');
+ex('dr_out','Ведение внешней стороной','Техника',['6-8','9-12','13-15'],'Мяч','Ведение внешней стороной стопы.','Стопа развёрнута.','3 × 20 м','dribble','Лексаков, разд. 2');
+ex('dr_sl','Ведение между конусами','Техника',['6-8','9-12','13-15'],'Мяч, конусы','Обводка конусов внутренней и внешней.','Смена ритма.','3–4 повтора','slalom','Лексаков, разд. 2');
+ex('dr_sp','Скоростное ведение','Техника',['9-12','13-15'],'Мяч','Ведение на максимальной скорости.','Касание каждые 2–3 шага.','4 × 20–30 м','sprint','Мамуров, 3.1');
+ex('dr_tr','Ведение с поворотами','Техника',['6-8','9-12','13-15'],'Мяч','Поворот подошвой на 180°.','Перед поворотом снизить скорость.','4 × 3 поворота','dribble','Лексаков, разд. 2');
+ex('dr_stop','Ведение со стопами','Техника',['6-8','9-12'],'Мяч','Остановка мяча подошвой по сигналу.','Контроль мяча.','3 × 1 мин','trap','Лексаков, разд. 2');
+ex('dr_back','Ведение спиной вперёд','Техника',['9-12','13-15'],'Мяч','Ведение спиной вперёд с контролем мяча.','Контроль пространства.','3 × 15 м','dribble','Мамуров, 3.1');
+ex('dr_prot','Ведение с защитой мяча','Техника',['9-12','13-15'],'Мяч','Корпус между мячом и соперником.','Согнутое колено, рука для баланса.','3 × 1 мин','protect','Губа, гл. 3');
+ex('dr_change','Ведение со сменой скорости','Техника',['9-12','13-15'],'Мяч','Медленное ведение, затем резкое ускорение.','Смена ритма.','4 × 20 м','dribble','Губа, гл. 3');
+
+/* --- ПЕРЕДАЧИ --- */
+ex('ps_in','Передача внутренней стороной','Техника',['6-8','9-12','13-15'],'Мяч','Передача в парах и в стенку.','Опорная нога рядом с мячом.','3 × 10 каждой','pass','Лексаков, разд. 10');
+ex('ps_out','Передача внешней стороной','Техника',['9-12','13-15'],'Мяч','Передача внешней стороной стопы.','Голеностоп жёсткий.','3 × 10','pass','Лексаков, разд. 10');
+ex('ps_sh','Короткие передачи в парах','Техника',['6-8','9-12','13-15'],'Мяч','Передачи на 5–7 м, приём и передача.','Точность и своевременность.','4 × 10','pass','Лексаков, разд. 10');
+ex('ps_lg','Длинные передачи','Техника',['9-12','13-15'],'Мяч','Передачи на 20–30 м.','Корпус над мячом.','3 × 8','pass','Мамуров, 3.1');
+ex('ps_wall','Передачи в стенку','Техника',['6-8','9-12','13-15'],'Мяч, стенка','Передача в стенку с приёмом.','Быстрая обработка.','3 × 20','wall','Лексаков, разд. 10');
+ex('ps_12','Передача в одно касание','Техника',['9-12','13-15'],'Мяч','Игра в стенку: отдал — открылся — получил.','Не задерживать мяч.','4 × 1 мин','give_go','Губа, гл. 3');
+ex('ps_back','Передача назад','Техника',['9-12','13-15'],'Мяч','Передача под опорную ногу партнёра.','Точность важнее силы.','3 × 10','pass','Губа, гл. 4');
+ex('ps_through','Передача на ход','Техника',['9-12','13-15'],'Мяч','Передача в разрез, партнёр открывается.','Своевременность.','3 × 8','pass','Губа, гл. 4');
+ex('ps_in_motion','Передачи в движении','Техника',['9-12','13-15'],'Мяч','Партнёры движутся, передача на ход.','Расчёт силы передачи.','4 × 1 мин','pass','Мамуров, 3.1');
+ex('ps_switch','Перевод на другой фланг','Техника',['13-15'],'Мяч','Длинная передача через поле.','Оценка свободной зоны.','3 × 8','pitch','Губа, гл. 4');
+
+/* --- ПРИЁМ МЯЧА --- */
+ex('tr_sole','Остановка подошвой','Техника',['6-8','9-12','13-15'],'Мяч','Остановка катящегося мяча подошвой.','Стопа расслаблена.','3 × 10','trap','Лексаков, разд. 10');
+ex('tr_in','Остановка внутренней стороной','Техника',['6-8','9-12','13-15'],'Мяч','Остановка мяча внутренней стороной.','Ногу отводить навстречу.','3 × 10','trap','Лексаков, разд. 10');
+ex('tr_chest','Остановка грудью','Техника',['9-12','13-15'],'Мяч','Остановка летящего мяча грудью.','Корпус слегка назад.','3 × 8','trap','Мамуров, 3.1');
+ex('tr_thigh','Остановка бедром','Техника',['9-12','13-15'],'Мяч','Остановка мяча бедром.','Колено под мяч.','3 × 8','trap','Мамуров, 3.1');
+ex('first_t','Первое касание в движении','Техника',['9-12','13-15'],'Мяч','Приём с уходом в свободную зону.','Первое касание — от соперника.','3 × 10','trap','Губа, гл. 3');
+ex('rec_turn','Приём с разворотом','Техника',['9-12','13-15'],'Мяч','Приём с разворотом на 180°.','Смотреть через плечо.','3 × 8','rot360','Губа, гл. 3');
+ex('rec_air','Приём летящего мяча','Техника',['13-15'],'Мяч','Приём мяча после навеса.','Мягкое касание, гашение скорости.','3 × 8','trap','Губа, гл. 3');
+
+/* --- УДАРЫ --- */
+ex('sh_in','Удар внутренней стороной','Техника',['6-8','9-12','13-15'],'Мяч, ворота','Удар по неподвижному мячу.','Опорная нога на цель.','3 × 8 каждой','shot','Лексаков, разд. 2');
+ex('sh_lace','Удар подъёмом','Техника',['9-12','13-15'],'Мяч, ворота','Удар подъёмом с прямого разбега.','Жёсткий голеностоп.','3 × 8','shot','Мамуров, 3.1');
+ex('sh_pass','Удар после передачи','Техника',['9-12','13-15'],'Мяч, ворота','Партнёр отдаёт, игрок бьёт с ходу.','Обработать одним касанием.','4 × 8','shot','Мамуров, 3.1');
+ex('sh_drib','Удар после ведения','Техника',['9-12','13-15'],'Мяч, ворота','Ведение, удар с 16–18 м.','Последнее касание под удар.','4 × 8','shot','Мамуров, 3.1');
+ex('sh_volley','Удар с лёта','Техника',['13-15'],'Мяч, ворота','Удар по летящему мячу.','Следить за траекторией.','4 × 8','shot','Губа, гл. 3');
+ex('sh_curl','Удар с подкруткой','Техника',['13-15'],'Мяч, ворота','Удар внутренней частью подъёма с подкруткой.','Обводящее движение.','4 × 6','sh_curl','Губа, гл. 3');
+ex('head_sh','Удар головой','Техника',['9-12','13-15'],'Мяч, ворота','Удар головой по подброшенному мячу.','Удар лбом, глаза открыты.','5 × 8','head','Мамуров, 3.1');
+ex('head_sh_jump','Удар головой в прыжке','Техника',['13-15'],'Мяч, ворота','Удар головой в прыжке.','Толчок двумя ногами.','4 × 6','head','Губа, гл. 3');
+ex('sh_pen','Пенальти','Техника',['9-12','13-15'],'Мяч, ворота','Удар с 11 метров.','Спокойствие, техника.','6 ударов','shot','Мамуров, 3.1');
+ex('sh_angle','Удар с угла','Техника',['13-15'],'Мяч, ворота','Удар с острого угла.','Точность в дальний угол.','4 × 6','sh_curl','Губа, гл. 3');
+ex('cross','Прострел и навес','Техника',['13-15'],'Мяч, ворота','Навес с фланга в штрафную.','Оценить позицию вратаря.','5 × 6','setpiece','Губа, гл. 3');
+ex('throw_in','Вбрасывание мяча','Техника',['13-15'],'Мяч','Вбрасывание из-за боковой.','Обе ноги на земле.','10 повторов','toss_c','Губа, гл. 3');
+
+/* --- ФИНТЫ --- */
+ex('feint_b','Финт корпусом','Техника',['9-12','13-15'],'Мяч','Обманное движение корпусом.','Не терять мяч.','4 × 1 мин','duel','Лексаков, разд. 2');
+ex('feint_s','Финт «ложный замах»','Техника',['9-12','13-15'],'Мяч','Замах на удар и уход в сторону.','Пауза перед уходом.','4 × 1 мин','duel','Лексаков, разд. 2');
+ex('scissors','Финт «ножницы»','Техника',['9-12','13-15'],'Мяч','Перенос ноги через мяч.','Корпус над мячом.','4 × 1 мин','dribble','Лексаков, разд. 2');
+ex('stepover','Финт «перешагивание»','Техника',['9-12','13-15'],'Мяч','Перешагивание через мяч.','Ускорение после финта.','4 × 1 мин','dribble','Лексаков, разд. 2');
+ex('cruyff','Финт Кройффа','Техника',['13-15'],'Мяч','Уход под себя внутренней стороной.','Резкая смена направления.','4 × 1 мин','dribble','Губа, гл. 3');
+ex('duel','Обводка 1v1','Техника / Тактика',['9-12','13-15'],'Мяч, конусы','Один в один на ограниченной площадке.','Смена скорости.','4 × 1 мин','duel','Губа, гл. 3');
+
+/* ==========================================================
+   БАЗА УПРАЖНЕНИЙ — ЧАСТЬ 2 (~105 записей)
+   Продолжаем: тактика, игры, скорость, сила, выносливость,
+   гибкость, эстафеты, интегральная, матчи, стандарты.
+   ========================================================== */
+
+/* --- ТАКТИКА --- */
+ex('sq4v1','Квадрат 4v1','Тактика',['9-12','13-15'],'Мяч, фишки','Четыре игрока держат мяч, один отбирает.','Открывание и своевременная передача.','3 × 3 мин','rondo','Губа, гл. 3');
+ex('sq4v2','Квадрат 4v2','Тактика',['9-12','13-15'],'Мяч, фишки','Четыре против двух.','Быстрый перевод мяча на свободную сторону.','3 × 3 мин','rondo','Губа, гл. 3');
+ex('sq4v3','Квадрат 4v3','Тактика',['13-15'],'Мяч, фишки','Четыре против трёх в ограниченной зоне.','Ограничение касаний — 2.','3 × 3 мин','rondo','Губа, гл. 3');
+ex('ron5v2','Рондо 5v2','Тактика',['9-12','13-15'],'Мяч, фишки','Пять против двух в ограниченной зоне.','Ограничение касаний — 2.','4 × 3 мин','circle','Губа, гл. 3');
+ex('ron5v3','Рондо 5v3','Тактика',['13-15'],'Мяч, фишки','Пять против трёх.','Быстрое открывание в линиях.','4 × 3 мин','circle','Губа, гл. 3');
+ex('2v1','2v1 с завершением','Тактика',['9-12','13-15'],'Мяч, ворота','Два атакующих против одного защитника, удар по воротам.','Решить: отдать или бить.','4–5 повторов','two','Губа, гл. 3');
+ex('3v2','3v2 с завершением','Тактика',['9-12','13-15'],'Мяч, ворота','Три атакующих против двух защитников.','Использовать свободного игрока.','4–5 повторов','three','Губа, гл. 3');
+ex('4v3','4v3 с завершением','Тактика',['13-15'],'Мяч, ворота','Четыре против трёх.','Держать ширину и глубину.','4 повтора','three','Губа, гл. 3');
+ex('4v4_pos','4v4 позиционное','Тактика',['13-15'],'Мяч, фишки','Позиционная игра 4v4 на ограниченном пространстве.','Открывание в линиях.','3 × 4 мин','king','Губа, гл. 4');
+ex('5v4','5v4 с перегрузкой','Тактика',['13-15'],'Мяч, ворота','Пять атакующих против четырёх защитников.','Использовать численное преимущество.','4 повтора','king','Губа, гл. 4');
+ex('pos_att','Позиционное нападение 7v7','Тактика',['13-15'],'Мяч, фишки','Перевод мяча через фланги.','Ширина и глубина атаки.','15–20 мин','pitch','Губа, гл. 4');
+ex('counter','Быстрый переход в атаку','Тактика',['9-12','13-15'],'Мяч, ворота','После отбора — атака за 6–8 секунд.','Первая передача вперёд.','4 повтора','transition','Губа, гл. 4');
+ex('press','Основы прессинга','Тактика',['13-15'],'Мяч, фишки','Коллективный отбор на чужой половине.','Согласованность действий.','3 × 4 мин','zonal','Губа, гл. 4');
+ex('zonal','Зонная оборона','Тактика',['13-15'],'Мяч, фишки','Расположение в линиях, передача игроков между зонами.','Не терять линию.','3 × 4 мин','zonal','Губа, гл. 4');
+ex('def_line','Держание линии обороны','Тактика',['13-15'],'Мяч, фишки','Синхронные перемещения защитной линии вверх-вниз.','Единая линия, шаг в шаг.','3 × 3 мин','zonal','Губа, гл. 4');
+ex('overlap','Игра в стенку и открывание','Тактика',['9-12','13-15'],'Мяч','Отдал — открылся — получил.','Своевременное открывание.','4 × 2 мин','give_go','Губа, гл. 4');
+ex('third_man','Третий игрок','Тактика',['13-15'],'Мяч','Передача через третьего игрока.','Смена направления атаки.','4 × 2 мин','overlap','Губа, гл. 4');
+ex('switch','Перевод игры','Тактика',['13-15'],'Мяч','Перевод мяча с фланга на фланг.','Длинная передача точная.','4 × 2 мин','transition','Губа, гл. 4');
+ex('offside','Игра на линии офсайда','Тактика',['13-15'],'Мяч','Синхронные перемещения линии атаки.','Единая линия.','3 × 3 мин','offside','Губа, гл. 4');
+ex('build_up','Выход из обороны','Тактика',['13-15'],'Мяч, фишки','Начало атаки от вратаря и защитников.','Разделение зон, короткие передачи.','4 × 3 мин','pitch','Губа, гл. 4');
+ex('wing_play','Игра через фланги','Тактика',['13-15'],'Мяч','Подача с фланга и завершение.','Создание ширины.','4 × 3 мин','pitch','Губа, гл. 4');
+ex('1v1_def','Оборонительное 1v1','Тактика',['9-12','13-15'],'Мяч','Один защитник против одного атакующего.','Не прыгать, вести в слабую ногу.','4 × 1 мин','duel','Губа, гл. 4');
+ex('def_recover','Восстановление позиции','Тактика',['13-15'],'Мяч, фишки','Защитник возвращается на позицию после потери.','Быстрое перестроение.','3 × 3 мин','zonal','Губа, гл. 4');
+
+/* --- СТАНДАРТЫ --- */
+ex('corner','Угловые','Стандарты',['13-15'],'Мяч, ворота','Подача и завершение с углового.','Договорённость о зонах.','8–10 повторов','setpiece','Губа, гл. 4');
+ex('free','Штрафные','Стандарты',['13-15'],'Мяч, ворота','Прямые и разыгранные штрафные.','Оценить расстояние до ворот.','8–10 повторов','setpiece','Губа, гл. 4');
+ex('throw_tac','Аут по тактике','Стандарты',['13-15'],'Мяч','Разыгрывание аута.','Быстрое открывание.','6 повторов','pass','Губа, гл. 4');
+ex('goal_kick','Удар от ворот','Стандарты',['13-15'],'Мяч','Начало атаки от ворот.','Разделение зон.','6 повторов','goal','Губа, гл. 4');
+
+/* --- ПОДВИЖНЫЕ ИГРЫ --- */
+ex('tag_ball','Салки с мячом','Игры',['6-8','9-12'],'Мяч','Водящий с мячом осаливает игроков.','Быстрая смена направления.','5–8 мин','tag','Лексаков, разд. 12');
+ex('hunters','Охотники и утки','Игры',['6-8','9-12'],'Мяч','Охотники выбивают уток.','Точность броска.','6–8 мин','hunters','Лексаков, разд. 12');
+ex('call_num','Вызов номеров','Игры',['6-8','9-12'],'—','Дети с номерами бегут к фишке по вызову.','Реакция на сигнал.','5–6 мин','numbers','Лексаков, разд. 12');
+ex('dogs','Собачки','Игры',['6-8','9-12'],'Мяч','В кругу один или два водящих отбирают мяч.','Держать мяч под контролем.','5 мин','circle','Лексаков, разд. 12');
+ex('ball_circ','Мяч в кругу','Игры',['6-8','9-12'],'Мяч','Передача мяча ногами по кругу, водящий перехватывает.','Точность передачи.','5 мин','circle','Лексаков, разд. 12');
+ex('empty','Пустое место','Игры',['6-8','9-12'],'—','Классическая игра на перебежку к свободному месту.','Внимание и реакция.','5–6 мин','run','Лексаков, разд. 12');
+ex('day_night','День и ночь','Игры',['6-8','9-12'],'—','По команде одна команда догоняет другую.','Быстрая реакция.','4 × 1 мин','tag','Лексаков, разд. 12');
+ex('third_w','Третий лишний','Игры',['6-8','9-12'],'—','Классическая игра с догонялками.','Смена направления.','5 мин','tag','Лексаков, разд. 12');
+ex('king','Игра «Король» (4v4)','Игры',['9-12','13-15'],'Мяч, фишки','4v4 на малом поле, задача — забить в мини-ворота.','Контроль мяча и открывание.','3 × 3 мин','king','Губа, гл. 4');
+ex('gates','Игра «Ворота»','Игры',['6-8','9-12'],'Мяч, конусы','Игроки ведут мяч через ворота-фишки.','Контроль мяча и поиск свободных ворот.','4 × 2 мин','gate','Лексаков, разд. 12');
+ex('keep_away','Держи мяч','Игры',['9-12','13-15'],'Мяч, фишки','Команды держат мяч, не давая сопернику отобрать.','Открывание и передачи в одно касание.','4 × 2 мин','circle','Губа, гл. 3');
+ex('3_lives','Три жизни','Игры',['6-8','9-12'],'Мяч','У каждого 3 попытки, кого выбили — выходит.','Реакция и работа с мячом.','5 мин','circle','Лексаков, разд. 12');
+
+/* --- СКОРОСТЬ --- */
+ex('sp10','Ускорения 10 м','Скорость',['6-8','9-12','13-15'],'—','Ускорения с высокого старта на 10 м.','Первый шаг короткий, активная работа рук.','5 × 10 м','sprint','Мамуров, 2.2');
+ex('sp15','Ускорения 15 м','Скорость',['9-12','13-15'],'—','Ускорения на 15 м.','Максимальное усилие.','4–5 × 15 м','sprint','Мамуров, 2.2');
+ex('sp20','Ускорения 20 м','Скорость',['9-12','13-15'],'—','Ускорения на 20 м с отдыхом до восстановления.','Не снижать технику бега.','4–5 × 20 м','sprint','Мамуров, 2.2');
+ex('sp30','Ускорения 30 м','Скорость',['13-15'],'—','Ускорения на 30 м.','Активная работа рук, длинный шаг.','4 × 30 м','sprint','Мамуров, 2.2');
+ex('flying','Бег с хода','Скорость',['13-15'],'—','Разгон 15 м, затем 20–30 м с максимальной скоростью.','Акцент на частоте шага.','4 × 30 м','sprint','Мамуров, 2.2');
+ex('sh3','Челночный бег 3×10 м','Скорость',['6-8','9-12','13-15'],'Фишки','Бег 10 м туда-обратно три раза.','Торможение и разворот на носках.','3–4 серии','relay','Мамуров, 2.2');
+ex('sh4','Челночный бег 4×9 м','Скорость',['9-12','13-15'],'Фишки','Челночный бег 4×9 м.','Контроль разворота.','3–4 серии','relay','Мамуров, 2.2');
+ex('relay_r','Эстафетный бег','Скорость',['6-8','9-12','13-15'],'Фишки, палочка','Эстафеты с бегом и передачей палочки.','Передача в движении.','3 повтора','relay','Лексаков, разд. 13');
+ex('start_v','Старты из разных положений','Скорость',['9-12','13-15'],'—','Стоя, сидя, лёжа, спиной вперёд.','Быстрый первый шаг.','4–6 повторов','sprint','Мамуров, 2.2');
+ex('chase','Догонялки с мячом','Скорость',['6-8','9-12'],'Мяч','Один ведёт, второй догоняет.','Ускорение с мячом.','4 × 20 м','tag','Лексаков, разд. 12');
+ex('dr_react','Ведение по сигналу','Скорость',['9-12','13-15'],'Мяч','Ведение с резким ускорением по сигналу.','Контроль мяча на скорости.','4 × 15 м','dribble','Губа, гл. 3');
+ex('ball_react','Реакция с мячом','Скорость',['9-12','13-15'],'Мяч, конусы','Игрок с мячом реагирует на цвет конуса ускорением.','Быстрое решение.','6 повторов','cone','Мамуров, 2.2');
+
+/* --- СИЛА --- */
+ex('squat','Приседания','Сила',['9-12','13-15'],'—','Приседания с собственным весом.','Колени над стопами, спина прямая.','3 × 12','squat','Мамуров, 2.2');
+ex('squat_j','Выпрыгивания из приседа','Сила / Скорость',['9-12','13-15'],'—','Присед и максимальное выпрыгивание вверх.','Мягкое приземление.','4 × 8','jump','Мамуров, 2.2');
+ex('lunge','Выпады','Сила',['9-12','13-15'],'—','Выпады вперёд попеременно.','Колено не выходит за носок.','3 × 10','squat','Мамуров, 2.2');
+ex('pushup','Отжимания','Сила',['9-12','13-15'],'—','Отжимания от пола, вариант — с колен.','Корпус в одной линии.','3 × 8–12','squat','Мамуров, 2.2');
+ex('plank','Планка','Сила',['9-12','13-15'],'—','Планка на предплечьях.','Не прогибать поясницу.','3 × 30–45 с','stretch','Мамуров, 2.2');
+ex('side_pl','Боковая планка','Сила',['9-12','13-15'],'—','Планка на боку.','Корпус прямой.','2 × 30 с','stretch','Мамуров, 2.2');
+ex('abs','Пресс','Сила',['9-12','13-15'],'—','Подъёмы корпуса из положения лёжа.','Не тянуть шею руками.','3 × 12','squat','Мамуров, 2.2');
+ex('back_ext','Разгибания спины','Сила',['9-12','13-15'],'—','Подъёмы корпуса лёжа на животе.','Плавный темп.','3 × 12','stretch','Мамуров, 2.2');
+ex('long_j','Прыжок в длину с места','Скоростно-силовые',['9-12','13-15'],'—','Прыжок с максимальным результатом.','Активный мах руками.','4 × 5','jump','Мамуров, 2.2');
+ex('up_j','Прыжки вверх с места','Скоростно-силовые',['9-12','13-15'],'—','Прыжки вверх с касанием ориентира.','Максимальное усилие.','3 × 8','jump','Мамуров, 2.2');
+ex('bound','Многоскоки','Скоростно-силовые',['13-15'],'—','Многоскоки на 20 м.','Активное отталкивание стопой.','3 × 20 м','jump','Мамуров, 2.2');
+ex('medball','Бросок набивного мяча','Сила',['13-15'],'Набивной мяч','Броски набивного мяча из разных положений.','Работа корпуса.','3 × 10','medball','Мамуров, 2.2');
+ex('burpee','Бёрпи','Сила',['13-15'],'—','Упор лёжа, прыжок вверх.','Контроль техники.','3 × 8','squat','Мамуров, 2.2');
+ex('crab','Ходьба крабом','Сила / Координация',['6-8','9-12'],'—','Передвижение на руках и ногах.','Корпус прямой.','3 × 15 м','run','Лексаков, разд. 1');
+
+/* --- ВЫНОСЛИВОСТЬ --- */
+ex('run_e','Кроссовый бег','Выносливость',['9-12','13-15'],'—','Спокойный бег в равномерном темпе.','Дыхание ровное, можно разговаривать.','8–15 мин','run','Мамуров, 2.2');
+ex('int400','Интервалы 4×400 м','Выносливость',['13-15'],'—','Отрезки 400 м, отдых 90 с.','Держать темп на всех отрезках.','2 серии','interval','Мамуров, 2.2');
+ex('int200','Интервалы 6×200 м','Выносливость',['13-15'],'—','Отрезки 200 м, отдых 60–90 с.','Следить за техникой.','6 повторов','interval','Мамуров, 2.2');
+ex('int600','Интервалы 3×600 м','Выносливость',['13-15'],'—','Отрезки 600 м, отдых 2 мин.','Ровный темп.','3 повтора','interval','Мамуров, 2.2');
+ex('fartlek','Фартлек','Выносливость',['9-12','13-15'],'—','Бег с чередованием темпа по сигналу.','Смена темпа каждые 30–60 с.','10–15 мин','interval','Мамуров, 2.2');
+ex('tempo','Темповый бег','Выносливость',['13-15'],'—','Бег в пороговом темпе.','Дыхание контролируемое.','10 мин','run','Мамуров, 2.2');
+ex('game_end','Игровая выносливость','Выносливость',['6-8','9-12'],'Мяч','Игры с постоянным движением: 3v3, 4v4.','Поддерживать высокую активность.','4 × 3 мин','match','Лексаков, разд. 12');
+ex('int30_30','Интервалы 30/30','Выносливость',['13-15'],'—','30 с ускорение, 30 с спокойный бег.','10–12 повторов.','10 повторов','interval','Мамуров, 2.2');
+
+/* --- ГИБКОСТЬ / ВОССТАНОВЛЕНИЕ --- */
+ex('str_legs','Растяжка ног','Гибкость',['6-8','9-12','13-15'],'—','Задняя и передняя поверхность бедра, икры.','Без рывков, задержка 20–30 с.','4–5 мин','stretch','Лексаков, разд. 8');
+ex('str_hips','Растяжка таза','Гибкость',['6-8','9-12','13-15'],'—','Сгибатели бедра и ягодичные.','Спина прямая.','3–4 мин','stretch','Лексаков, разд. 8');
+ex('str_back','Растяжка спины','Гибкость',['6-8','9-12','13-15'],'—','Наклоны, скручивания, растяжка сидя.','Плавное дыхание.','3 мин','stretch','Лексаков, разд. 9');
+ex('str_sh','Растяжка плеч','Гибкость',['6-8','9-12','13-15'],'—','Плечевой пояс и руки.','Без резких движений.','3 мин','stretch','Лексаков, разд. 9');
+ex('str_chest','Растяжка груди','Гибкость',['9-12','13-15'],'—','Растяжка грудных мышц у стены.','Плавно, до натяжения.','2 мин','stretch','Лексаков, разд. 9');
+ex('butterfly','Бабочка','Гибкость',['6-8','9-12'],'—','Сидя, стопы вместе, колени к полу.','Спина прямая.','3 × 30 с','stretch','Лексаков, разд. 9');
+ex('mob_ank','Мобильность голеностопа','Гибкость',['6-8','9-12','13-15'],'—','Круговые движения, растяжка у стены.','До натяжения.','3 мин','circle','Лексаков, разд. 9');
+ex('mob_hip','Мобильность таза','Гибкость',['9-12','13-15'],'—','Махи ногами, бабочка, выпады с поворотом.','Контроль амплитуды.','4 мин','stretch','Лексаков, разд. 9');
+ex('calf_str','Растяжка икр','Гибкость',['6-8','9-12','13-15'],'—','Растяжка икроножной мышцы у стены.','Пятка на земле.','2 × 30 с','stretch','Лексаков, разд. 8');
+ex('dyn_str','Динамическая растяжка','Гибкость',['9-12','13-15'],'—','Махи ногами вперёд-назад, в стороны, с продвижением.','Плавно, нарастающая амплитуда.','2 × 10','stretch','Мамуров, 2.2');
+ex('breathe','Дыхательные упражнения','Восстановление',['6-8','9-12','13-15'],'—','Спокойное дыхание после нагрузки.','Вдох носом, выдох ртом.','2–3 мин','breathe','Лексаков, разд. 9');
+ex('walk_rec','Восстановительная ходьба','Восстановление',['6-8','9-12','13-15'],'—','Ходьба с упражнениями на дыхание.','Пульс снижается.','3–4 мин','run','Лексаков, разд. 9');
+
+/* --- ЭСТАФЕТЫ --- */
+ex('relay_ball','Эстафета с ведением мяча','Эстафеты',['6-8','9-12','13-15'],'Мяч, фишки','Команды ведут мяч до фишки и обратно.','Передача эстафеты.','3 повтора','relay','Лексаков, разд. 13');
+ex('circuit_r','Круговая эстафета','Эстафеты',['9-12','13-15'],'Инвентарь','Круговая эстафета с 4–5 станциями.','Слаженность команды.','3 повтора','circuit','Лексаков, разд. 13');
+ex('circ_tech','Эстафета с техникой','Эстафеты',['9-12','13-15'],'Инвентарь','Ведение + передача + удар.','Качество техники на скорости.','3 повтора','relay','Лексаков, разд. 13');
+ex('comb_relay','Комбинированная эстафета','Эстафеты',['13-15'],'Инвентарь','Бег + ведение + передача + удар.','Слаженность и скорость.','3 повтора','relay','Лексаков, разд. 13');
+ex('chase_relay','Догоняющая эстафета','Эстафеты',['6-8','9-12'],'Фишки','Одна команда убегает, другая догоняет.','Реакция и ускорение.','3 повтора','relay','Лексаков, разд. 13');
+
+/* --- ИНТЕГРАЛЬНАЯ --- */
+ex('circ6','Круговая 6 станций','Интегральная',['9-12','13-15'],'Инвентарь','Прыжки, отжимания, пресс, бег, ведение, ускорение.','30 с работа, 30 с отдых.','2 круга','circuit','Лексаков, разд. 14');
+ex('circ8','Круговая 8 станций','Интегральная',['13-15'],'Инвентарь','8 станций с техническими и физическими заданиями.','Контроль техники на усталости.','2 круга','circuit','Лексаков, разд. 14');
+ex('circ_mix','Смешанная круговая','Интегральная',['13-15'],'Инвентарь','Физические и технические станции.','Контроль на усталости.','2 круга','circuit','Губа, гл. 4');
+ex('game_tech','Игра с техническим заданием','Интегральная',['9-12','13-15'],'Мяч','4v4 с ограничением касаний.','Выполнение задания.','12 мин','match','Губа, гл. 4');
+ex('sprint_shot','Спринт + удар','Интегральная',['13-15'],'Мяч, ворота','Ускорение 20 м, затем удар по воротам.','Техника удара на фоне утомления.','6 повторов','shot','Губа, гл. 4');
+
+/* --- МАТЧИ (игровая практика) --- */
+ex('match3','Мини-футбол 3v3','Игра',['6-8','9-12'],'Мяч, ворота','Игра 3 на 3 на малом поле.','Максимум касаний мяча.','8–12 мин','match','Игровой метод');
+ex('match4','Игра 4v4','Игра',['6-8','9-12','13-15'],'Мяч, ворота','Игра 4 на 4.','Быстрый переход из обороны в атаку.','10–15 мин','match','Игровой метод');
+ex('match5','Игра 5v5','Игра',['9-12','13-15'],'Мяч, ворота','Игра 5 на 5 с вратарями.','Держать позиции.','15 мин','match','Игровой метод');
+ex('match6','Игра 6v6','Игра',['9-12','13-15'],'Мяч, ворота','Игра 6 на 6 с тактическим заданием.','Выполнение задания недели.','15–18 мин','match','Игровой метод');
+ex('match7','Игра 7v7','Игра',['13-15'],'Мяч, ворота','Игра 7 на 7 на половине поля.','Командные взаимодействия.','20–25 мин','match','Игровой метод');
+ex('match_full','Двусторонняя игра','Игра',['13-15'],'Мяч, ворота','Полноценный двусторонний матч.','Установка тренера на игру.','25–30 мин','match','Игровой метод');
+
+/* ==========================================================
+   НАПРАВЛЕННОСТИ НЕДЕЛИ
+   ========================================================== */
+const FN = {
+  coord_basic:'Координация и базовые движения',
+  ball_feel:'Чувство мяча',
+  games:'Подвижные игры',
+  coord_ladder:'Координация: лестница и прыжки',
+  dribble_basic:'Ведение и обводка',
+  flexibility:'Гибкость и восстановление',
+  relay:'Эстафеты и быстрота',
+  match:'Игровая практика',
+  pass_receive:'Передачи и приём мяча',
+  coordination:'Координация и ловкость',
+  speed:'Скорость',
+  dribble_tech:'Техника ведения и обводки',
+  tactics_basic:'Тактика: малые группы',
+  strength_body:'Силовая подготовка',
+  endurance_game:'Игровая выносливость',
+  speed_strength:'Скоростно-силовая подготовка',
+  tactics_group:'Групповая тактика',
+  technique_speed:'Техника на скорости',
+  endurance:'Выносливость',
+  integral:'Интегральная подготовка',
+  setpiece:'Стандартные положения',
+  recovery:'Восстановление и мобильность'
+};
+
+/* ==========================================================
+   БЛОКИ (мезоциклы) — 48 недель на каждый уровень
+   ========================================================== */
+const BLOCKS = {
+  '6-8': [
+    {name:'Блок 1 · Координация и базовые движения', from:0, to:7, f:['coord_basic','ball_feel','games','coord_ladder','dribble_basic','flexibility','relay','coord_basic']},
+    {name:'Блок 2 · Чувство мяча и техника', from:8, to:15, f:['ball_feel','dribble_basic','games','coord_ladder','relay','flexibility','ball_feel','dribble_basic']},
+    {name:'Блок 3 · Скорость и ловкость', from:16, to:27, f:['coord_ladder','relay','games','coord_basic','flexibility','dribble_basic','ball_feel','coord_ladder','relay','games','coord_basic','flexibility']},
+    {name:'Блок 4 · Игры и интегральная', from:28, to:35, f:['games','match','relay','dribble_basic','coord_basic','ball_feel','match','games']},
+    {name:'Летний блок', from:36, to:47, f:['games','match','coord_basic','flexibility','games','match','relay','ball_feel','games','match','coord_basic','flexibility']}
+  ],
+  '9-12': [
+    {name:'Блок 1 · Передачи и приём', from:0, to:7, f:['pass_receive','coordination','speed','dribble_tech','tactics_basic','strength_body','match','endurance_game']},
+    {name:'Блок 2 · Координация и скорость', from:8, to:15, f:['coordination','speed','dribble_tech','pass_receive','strength_body','tactics_basic','match','endurance_game']},
+    {name:'Блок 3 · Тактика малых групп', from:16, to:27, f:['tactics_basic','pass_receive','speed','dribble_tech','strength_body','coordination','match','endurance_game','tactics_basic','pass_receive','speed','match']},
+    {name:'Блок 4 · Игровая и интегральная', from:28, to:35, f:['match','tactics_basic','coordination','strength_body','pass_receive','endurance_game','match','dribble_tech']},
+    {name:'Летний блок', from:36, to:47, f:['match','coordination','flexibility','tactics_basic','match','endurance_game','coordination','flexibility','match','tactics_basic','endurance_game','match']}
+  ],
+  '13-15': [
+    {name:'Блок 1 · Скоростно-силовая база', from:0, to:7, f:['speed_strength','technique_speed','tactics_group','endurance','integral','match','setpiece','recovery']},
+    {name:'Блок 2 · Техника на скорости', from:8, to:15, f:['technique_speed','speed_strength','tactics_group','integral','endurance','match','setpiece','recovery']},
+    {name:'Блок 3 · Групповая тактика', from:16, to:27, f:['tactics_group','speed_strength','technique_speed','endurance','integral','match','setpiece','recovery','tactics_group','integral','match','recovery']},
+    {name:'Блок 4 · Интегральная подготовка', from:28, to:35, f:['integral','tactics_group','speed_strength','technique_speed','endurance','match','setpiece','recovery']},
+    {name:'Летний блок', from:36, to:47, f:['match','recovery','integral','tactics_group','match','recovery','integral','tactics_group','match','recovery','integral','match']}
+  ]
+};
+
+/* ==========================================================
+   ГРУППЫ И РАСПИСАНИЕ (из зала)
+   ========================================================== */
+const DEFAULT_GROUPS = [
+  {id:'g1113', label:'2011/2013', level:'13-15',
+   schedule:[
+     {day:1, time:'16:15–17:30', note:''},
+     {day:3, time:'19:40–20:55', note:''},
+     {day:6, time:'19:00–20:15', note:''}
+   ],
+   note:'Старшая группа. Этап спортивной специализации. Скоростно-силовая подготовка, тактика, стандарты.'},
+
+  {id:'g1415', label:'2014/2015', level:'9-12',
+   schedule:[
+     {day:3, time:'16:30–17:50', note:''},
+     {day:5, time:'16:40–17:40', note:''},
+     {day:6, time:'17:40–19:00', note:''}
+   ],
+   note:'Этап углублённой базовой подготовки. Базовая техника, координация, тактика малых групп.'},
+
+  {id:'g2016', label:'2016', level:'9-12',
+   schedule:[
+     {day:2, time:'16:15–17:30', note:''},
+     {day:4, time:'16:15–17:30', note:''},
+     {day:5, time:'15:30–16:40', note:''}
+   ],
+   note:'Этап начальной специализации. Техника, координация, начало тактики.'},
+
+  {id:'g2017', label:'2017', level:'6-8',
+   schedule:[
+     {day:1, time:'17:30–18:30', note:'объединена со 2-й сменой'},
+     {day:3, time:'17:50–18:50', note:''},
+     {day:6, time:'13:00–14:15', note:''}
+   ],
+   note:'Этап предварительной подготовки. Чувство мяча, координация, игры.'},
+
+  {id:'g1819', label:'2018/2019', level:'6-8',
+   schedule:[
+     {day:3, time:'18:50–19:50', note:''},
+     {day:5, time:'17:40–18:40', note:''},
+     {day:6, time:'14:15–15:30', note:''}
+   ],
+   note:'Этап начального обучения. Координация, чувство мяча, подвижные игры.'},
+
+  {id:'g2021', label:'2021/2022', level:'6-8',
+   schedule:[
+     {day:1, time:'18:30–19:30', note:''},
+     {day:5, time:'18:40–19:40', note:''},
+     {day:6, time:'15:30–16:30', note:''}
+   ],
+   note:'Младшая группа (4–5 лет). Ниже стандарта 6–8: только игровые формы, общая координация, простейшие игры с мячом. Скоростно-силовую и тактическую части не применять.'},
+
+  {id:'g2020', label:'2020', level:'6-8',
+   schedule:[
+     {day:1, time:'19:30–20:40', note:''},
+     {day:5, time:'19:40–20:40', note:''},
+     {day:6, time:'16:30–17:40', note:''}
+   ],
+   note:'Младшая группа (5–6 лет). Только игровые формы и координация.'}
+];
+
+/* ==========================================================
+   РАЗМИНКИ — 3 варианта на каждый уровень
+   Структура: [id, дозировка]
+   ========================================================== */
+const WARMUPS = {
+  '6-8': [
+    // вариант 1 — базовый
+    [['jog_easy','2 мин'],['arm_circles','10'],['torso_twist','10'],['leg_swings','8 каждой'],['high_knees','2×10 м'],['side_steps','2×10 м'],['mobility_ankle','10+10']],
+    // вариант 2 — с подскоками
+    [['jog_easy','2 мин'],['head_rot','1 мин'],['hip_rot','10'],['leg_swings','8 каждой'],['bum_kicks','2×10 м'],['skips','2×15 м'],['ankling','1 мин']],
+    // вариант 3 — с изменением направления
+    [['jog_var','2 мин'],['arm_circles','10+10'],['torso_twist','10'],['high_knees','2×10 м'],['side_steps','2×10 м'],['jumping_jacks','15'],['mobility_ankle','10']]
+  ],
+  '9-12': [
+    // вариант 1 — с беговыми
+    [['jog_easy','2 мин'],['arm_circles','10+10'],['torso_twist','12'],['leg_swings','10 каждой'],['high_knees','2×15 м'],['bum_kicks','2×15 м'],['side_steps','2×15 м'],['lunge_walk','2×8'],['mobility_ankle','10+10']],
+    // вариант 2 — с координацией
+    [['jog_easy','2 мин'],['head_rot','1 мин'],['arm_circles','10+10'],['hip_rot','10'],['leg_swings','10 каждой'],['cross_steps','2×15 м'],['skips','2×15 м'],['mobility_hip','10+10']],
+    // вариант 3 — с прыжками
+    [['jog_var','2 мин'],['torso_twist','12'],['arm_circles','10+10'],['jumping_jacks','20'],['high_knees','2×15 м'],['bum_kicks','2×15 м'],['legs_raise','20'],['mobility_ankle','10+10']]
+  ],
+  '13-15': [
+    // вариант 1 — полная разминка
+    [['jog_easy','3 мин'],['arm_circles','12+12'],['torso_twist','12'],['hip_rot','10'],['leg_swings','12 каждой'],['lunge_walk','2×10'],['high_knees','2×20 м'],['cross_steps','2×15 м'],['jumping_jacks','20'],['mobility_hip','10+10']],
+    // вариант 2 — скоростная
+    [['jog_easy','2 мин'],['arm_circles','12+12'],['leg_swings','12 каждой'],['skips','2×20 м'],['bum_kicks','2×20 м'],['high_knees','2×20 м'],['side_steps','2×15 м'],['dyn_str','2×10'],['mobility_ankle','10+10']],
+    // вариант 3 — игровая
+    [['jog_var','3 мин'],['torso_twist','12'],['arm_circles','12+12'],['leg_swings','12 каждой'],['jumping_jacks','20'],['high_knees','2×20 м'],['skips','2×20 м'],['mobility_hip','10+10'],['dyn_str','2×10']]
+  ]
+};
+
+/* ==========================================================
+   ЗАМИНКИ — 3 варианта на уровень
+   ========================================================== */
+const COOLDOWNS = {
+  '6-8': [
+    [['walk_rec','2 мин'],['str_legs','3 мин'],['breathe','2 мин']],
+    [['walk_rec','2 мин'],['str_back','2 мин'],['str_sh','1 мин'],['breathe','1 мин']],
+    [['jog_easy','1 мин'],['str_legs','2 мин'],['mob_ank','2 мин'],['breathe','1 мин']]
+  ],
+  '9-12': [
+    [['walk_rec','2 мин'],['str_legs','3 мин'],['str_hips','2 мин'],['breathe','2 мин']],
+    [['jog_easy','2 мин'],['str_legs','3 мин'],['str_back','2 мин'],['str_sh','2 мин'],['breathe','2 мин']],
+    [['walk_rec','2 мин'],['mob_ank','2 мин'],['str_chest','2 мин'],['breathe','2 мин']]
+  ],
+  '13-15': [
+    [['walk_rec','3 мин'],['str_legs','4 мин'],['str_hips','3 мин'],['str_back','2 мин'],['breathe','2 мин']],
+    [['jog_easy','2 мин'],['mob_ank','3 мин'],['mob_hip','3 мин'],['str_sh','2 мин'],['breathe','2 мин']],
+    [['walk_rec','2 мин'],['str_legs','4 мин'],['str_chest','2 мин'],['breathe','2 мин']]
+  ]
+};
+
+/* ==========================================================
+   ОСНОВНЫЕ ЧАСТИ — по уровню × направленности × 2-3 варианта
+   Каждый вариант — 3-6 упражнений
+   ========================================================== */
+const MAIN = {
+  '6-8': {
+    coord_basic: [
+      [['ladder_b','3 подхода'],['slalom_run','3 повтора'],['hop1','2×8'],['balance1','2×30 с'],['tag_ball','5 мин']],
+      [['ladder_b','3 подхода'],['jump_side','3×10'],['roll','3 повтора'],['call_num','5 мин']],
+      [['ladder_b','3 подхода'],['mirror','3×1 мин'],['cone_col','6 повторов'],['dogs','5 мин']]
+    ],
+    ball_feel: [
+      [['toss_c','3×10'],['jg_feet','3 подхода'],['dr_in','3×20 м'],['ball_circ','5 мин']],
+      [['toss_t','2×6'],['waist','3×30 с'],['dr_sl','3 повтора'],['dogs','5 мин']],
+      [['toss_c','3×10'],['jg_feet','3 подхода'],['dr_out','3×20 м'],['match3','8 мин']]
+    ],
+    games: [
+      [['hunters','8 мин'],['empty','6 мин'],['gates','3×2 мин']],
+      [['relay_ball','3 повтора'],['tag_ball','6 мин'],['3_lives','4 мин']],
+      [['call_num','5 мин'],['day_night','4 × 1 мин'],['fb3v3','10 мин']]
+    ],
+    coord_ladder: [
+      [['ladder_b','3 подхода'],['hurdle','3×5'],['bench_w','3 прохода'],['call_num','5 мин']],
+      [['ladder_c','3 подхода'],['jump_side','3×10'],['roll','3 повтора'],['dogs','5 мин']],
+      [['ladder_b','4 подхода'],['hop1','2×8'],['mirror','3×1 мин'],['tag_ball','5 мин']]
+    ],
+    dribble_basic: [
+      [['dr_out','3×20 м'],['dr_tr','3 повтора'],['ps_in','3×10'],['match3','8 мин']],
+      [['dr_sl','3 повтора'],['tr_sole','3×10'],['sh_in','3×8'],['match3','8 мин']],
+      [['dr_in','3×20 м'],['tr_sole','3×10'],['dr_stop','3×1 мин'],['match3','10 мин']]
+    ],
+    flexibility: [
+      [['str_legs','4 мин'],['str_hips','3 мин'],['str_back','3 мин'],['butterfly','3×30 с']],
+      [['str_back','3 мин'],['str_sh','3 мин'],['calf_str','2×30 с'],['mob_ank','2 мин']],
+      [['str_legs','4 мин'],['str_sh','3 мин'],['butterfly','2×30 с'],['mob_ank','2 мин']]
+    ],
+    relay: [
+      [['relay_r','3 повтора'],['relay_ball','3 повтора'],['hop1','2×8'],['chase_relay','3 повтора']],
+      [['sh3','3 серии'],['relay_ball','3 повтора'],['roll','3 повтора'],['chase_relay','3 повтора']],
+      [['relay_ball','3 повтора'],['tag_ball','6 мин'],['gates','3×2 мин']]
+    ],
+    match: [
+      [['match3','12 мин'],['fb3v3','8 мин'],['sh_in','3×6']],
+      [['match4','12 мин'],['gates','3×2 мин'],['ps_sh','3×10']],
+      [['match3','12 мин'],['king','3×3 мин'],['sh_in','3×6']]
+    ]
+  },
+  '9-12': {
+    pass_receive: [
+      [['ps_sh','4×10'],['tr_in','4×8'],['sq4v1','3×3 мин'],['first_t','3×10'],['ps_12','4×1 мин']],
+      [['ps_wall','3×20'],['first_t','3×10'],['ron5v2','3×3 мин'],['ps_in_motion','4×1 мин'],['match4','10 мин']],
+      [['ps_lg','3×10'],['tr_sole','3×10'],['sq4v2','3×3 мин'],['ps_back','3×10'],['match5','15 мин']]
+    ],
+    coordination: [
+      [['ladder_b','4 подхода'],['slalom_run','3 повтора'],['hop1','3×10'],['dogs','5 мин']],
+      [['ladder_c','3 подхода'],['react_sig','4 повтора'],['rot360','3 повтора'],['match3','10 мин']],
+      [['hurdle','3×5'],['bench_j','3×8'],['balance1','3×30 с'],['mirror','3×1 мин']]
+    ],
+    speed: [
+      [['sp10','5 повторов'],['sh3','3 серии'],['dr_sp','4×20 м'],['ball_react','4 повтора']],
+      [['sp15','4 повтора'],['start_v','4 повтора'],['relay_r','3 повтора'],['dr_react','4×15 м']],
+      [['sp20','4 повтора'],['sh4','3 серии'],['dr_sp','4×20 м'],['match4','12 мин']]
+    ],
+    dribble_tech: [
+      [['dr_sl','4 повтора'],['duel','4×1 мин'],['feint_b','4 повтора'],['match3','10 мин']],
+      [['dr_sp','4×20 м'],['feint_s','4 повтора'],['sh_drib','3×8'],['match4','10 мин']],
+      [['dr_tr','4 повтора'],['duel','4×1 мин'],['dr_change','4×20 м'],['match5','15 мин']]
+    ],
+    tactics_basic: [
+      [['sq4v1','3×3 мин'],['2v1','4 повтора'],['overlap','4×2 мин'],['match4','12 мин']],
+      [['ron5v2','3×3 мин'],['3v2','4 повтора'],['1v1_def','4×1 мин'],['match5','15 мин']],
+      [['sq4v2','3×3 мин'],['counter','3 повтора'],['keep_away','3×2 мин'],['match6','15 мин']]
+    ],
+    strength_body: [
+      [['squat','3×12'],['plank','3×30 с'],['long_j','3×5'],['up_j','3×8']],
+      [['lunge','3×10'],['pushup','3×8'],['up_j','3×8'],['squat_j','3×8']],
+      [['abs','3×12'],['back_ext','3×12'],['rope_sk','3×30 с'],['crab','3×15 м']]
+    ],
+    match: [
+      [['match4','15 мин'],['sh_in','3×8'],['king','3×3 мин']],
+      [['match5','18 мин'],['ps_sh','3×10'],['2v1','3 повтора']],
+      [['match6','20 мин'],['sh_pass','3×8'],['counter','3 повтора']]
+    ],
+    endurance_game: [
+      [['game_end','4×3 мин'],['relay_r','3 повтора'],['match4','10 мин']],
+      [['run_e','8 мин'],['relay_ball','3 повтора'],['match4','10 мин']],
+      [['fartlek','10 мин'],['match4','12 мин'],['relay_ball','3 повтора']]
+    ]
+  },
+  '13-15': {
+    speed_strength: [
+      [['sp20','5 повторов'],['sh4','4 серии'],['long_j','4×5'],['up_j','3×8']],
+      [['flying','4×30 м'],['bound','3×20 м'],['squat_j','4×8'],['plank','3×45 с']],
+      [['sh3','4 серии'],['medball','3×10'],['plank','3×45 с'],['burpee','3×8']]
+    ],
+    tactics_group: [
+      [['ron5v2','4×3 мин'],['2v1','5 повторов'],['pos_att','15 мин'],['counter','3 повтора']],
+      [['sq4v2','4×3 мин'],['3v2','5 повторов'],['counter','4 повтора'],['match6','15 мин']],
+      [['press','3×4 мин'],['zonal','3×4 мин'],['match7','20 мин'],['def_line','3×3 мин']]
+    ],
+    technique_speed: [
+      [['dr_sp','5×20 м'],['ps_lg','4×10'],['sh_drib','4×8'],['match5','15 мин']],
+      [['first_t','4×10'],['rec_turn','4 повтора'],['cross','4×6'],['match5','15 мин']],
+      [['sh_volley','4×8'],['head_sh','4×8'],['sh_curl','4×6'],['match6','18 мин']]
+    ],
+    endurance: [
+      [['int400','4 повтора'],['run_e','6 мин'],['fartlek','8 мин']],
+      [['int200','6 повторов'],['circ6','2 круга'],['game_end','3×3 мин']],
+      [['fartlek','15 мин'],['match6','15 мин'],['int30_30','6 повторов']]
+    ],
+    integral: [
+      [['circ8','2 круга'],['dr_sp','4×20 м'],['sprint_shot','4 повтора'],['match5','12 мин']],
+      [['2v1','4 повтора'],['sh_pass','4×8'],['match6','15 мин'],['counter','3 повтора']],
+      [['counter','4 повтора'],['pos_att','15 мин'],['overlap','4×2 мин'],['match6','15 мин']]
+    ],
+    match: [
+      [['match7','25 мин'],['corner','8 повторов'],['sh_pen','6 ударов']],
+      [['match_full','30 мин'],['sh_pass','4×8'],['setpiece','—']],
+      [['match7','25 мин'],['free','8 повторов'],['counter','3 повтора']]
+    ],
+    setpiece: [
+      [['corner','10 повторов'],['head_sh','5×8'],['throw_tac','6 повторов'],['match5','15 мин']],
+      [['free','10 повторов'],['sh_volley','4×8'],['goal_kick','6 повторов'],['match6','15 мин']],
+      [['throw_tac','10 повторов'],['cross','5×6'],['corner','6 повторов'],['match7','20 мин']]
+    ],
+    recovery: [
+      [['run_e','10 мин'],['str_legs','5 мин'],['str_back','3 мин'],['breathe','3 мин']],
+      [['mob_ank','4 мин'],['mob_hip','4 мин'],['str_sh','3 мин'],['dyn_str','3 мин'],['breathe','3 мин']],
+      [['fb3v3','15 мин'],['str_legs','5 мин'],['str_chest','2 мин'],['breathe','3 мин']]
+    ]
+  }
+};
+
+/* ==========================================================
+   КОНСТАНТЫ
+   ========================================================== */
+const LOADS = ['Втягивающая','Развивающая','Ударная','Восстановительная'];
+const DAYN = ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
+const DAYF = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
+
+/* ==========================================================
+   УТИЛИТЫ
+   ========================================================== */
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+function lsGet(k, d){ try { return JSON.parse(localStorage.getItem(k)) || d; } catch(e){ return d; } }
+function lsSet(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+
+/* ==========================================================
+   ВКЛАДКИ
+   ========================================================== */
+$$('.tab').forEach(t => t.onclick = () => {
+  $$('.tab').forEach(x => x.classList.remove('on'));
+  $$('.panel').forEach(x => x.classList.remove('on'));
+  t.classList.add('on');
+  const p = $('#p-' + t.dataset.t);
+  if (p) p.classList.add('on');
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+/* ==========================================================
+   СЕЗОН И ДАТЫ
+   ========================================================== */
+function seasonStart(){
+  const n = new Date();
+  let y = n.getFullYear();
+  if (n.getMonth() < 8) y--;
+  let d = new Date(y, 8, 1);
+  while (d.getDay() !== 1) d.setDate(d.getDate() + 1);
+  return d;
+}
+const START = seasonStart();
+const SEASON = START.getFullYear() + '/' + String(START.getFullYear() + 1).slice(2);
+
+function addDays(d, n){ const x = new Date(d); x.setDate(x.getDate() + n); return x; }
+function weekStart(i){ return addDays(START, i * 7); }
+function fmt(d){ return String(d.getDate()).padStart(2,'0') + '.' + String(d.getMonth()+1).padStart(2,'0'); }
+
+function holidayOf(d){
+  const m = d.getMonth(), day = d.getDate();
+  if ((m === 9 && day >= 26) || (m === 10 && day <= 7)) return 'Осенние каникулы';
+  if ((m === 11 && day >= 28) || (m === 0 && day <= 10)) return 'Зимние каникулы';
+  if (m === 2 && day >= 23 && day <= 31) return 'Весенние каникулы';
+  if (m >= 5) return 'Летние каникулы';
+  return '';
+}
+
+/* ==========================================================
+   ГРУППЫ
+   ========================================================== */
+function loadGroups(){
+  return lsGet('artkelo_groups', DEFAULT_GROUPS.map(g => ({
+    ...g,
+    schedule: g.schedule.map(s => ({...s}))
+  })));
+}
+function saveGroups(g){ lsSet('artkelo_groups', g); }
+
+let GROUPS = loadGroups();
+let curGrp = GROUPS[0].id;
+let curWeek = 0;
+let curYear = null;
+
+function getGrp(){ return GROUPS.find(g => g.id === curGrp) || GROUPS[0]; }
+
+function resetGroups(){
+  if (!confirm('Вернуть исходное расписание всех групп?')) return;
+  localStorage.removeItem('artkelo_groups');
+  GROUPS = loadGroups();
+  if (!GROUPS.find(g => g.id === curGrp)) curGrp = GROUPS[0].id;
+  curYear = null;
+  saveGAndRerender();
+}
+
+function saveGAndRerender(){
+  saveGroups(GROUPS);
+  curYear = null;
+  renderGrpSel();
+  renderGrpInfo();
+  renderPlan();
+  renderGrpEditor();
+  initPrint();
+  renderBuilder();
+  renderTestForm();
+}
+
+function editGrpField(id, f, v){
+  const g = GROUPS.find(x => x.id === id);
+  if (!g) return;
+  g[f] = v;
+  saveGAndRerender();
+}
+
+function editSess(id, i, f, v){
+  const g = GROUPS.find(x => x.id === id);
+  if (!g || !g.schedule[i]) return;
+  g.schedule[i][f] = f === 'day' ? parseInt(v, 10) : v;
+  saveGAndRerender();
+}
+
+function addSess(id){
+  const g = GROUPS.find(x => x.id === id);
+  if (!g) return;
+  g.schedule.push({day:6, time:'10:00–11:00', note:''});
+  saveGAndRerender();
+}
+
+function delSess(id, i){
+  const g = GROUPS.find(x => x.id === id);
+  if (!g) return;
+  if (g.schedule.length <= 1) { alert('Хотя бы одно занятие должно остаться'); return; }
+  g.schedule.splice(i, 1);
+  saveGAndRerender();
+}
+
+/* ==========================================================
+   ПОСТРОЕНИЕ ГОДОВОГО ПЛАНА ДЛЯ ГРУППЫ
+   ========================================================== */
+function pickVariant(arr, idx){
+  if (!arr || !arr.length) return [];
+  return arr[idx % arr.length];
+}
+
+function buildSession(level, focus, sessionIndex, date, dayInfo){
+  const warm = pickVariant(WARMUPS[level] || WARMUPS['6-8'], sessionIndex);
+  const mainArr = (MAIN[level] && MAIN[level][focus]) ? MAIN[level][focus] : null;
+  const main = mainArr ? pickVariant(mainArr, sessionIndex) : [];
+  const cool = pickVariant(COOLDOWNS[level] || COOLDOWNS['6-8'], sessionIndex);
+
+  const phaseTime = {
+    '6-8':  {warm:'10 мин', main:'30 мин', cool:'5 мин'},
+    '9-12': {warm:'12 мин', main:'35 мин', cool:'8 мин'},
+    '13-15':{warm:'15 мин', main:'45 мин', cool:'10 мин'}
+  }[level];
+
+  const toItems = arr => arr.map(([id, dose]) => ({id, dose: dose || (EX[id] ? EX[id].dose : '')}));
+
+  return {
+    day: dayInfo.day,
+    dayName: DAYN[dayInfo.day],
+    dayFull: DAYF[dayInfo.day],
+    time: dayInfo.time,
+    note: dayInfo.note || '',
+    date: fmt(date),
+    dateObj: date,
+    holiday: holidayOf(date),
+    phases: [
+      {type:'warm', name:'Разминка',      time: phaseTime.warm, items: toItems(warm)},
+      {type:'main', name:'Основная часть', time: phaseTime.main, items: toItems(main)},
+      {type:'cool', name:'Заминка',        time: phaseTime.cool, items: toItems(cool)}
+    ]
+  };
+}
+
+function buildGroupYear(g){
+  const blocks = BLOCKS[g.level] || BLOCKS['6-8'];
+  const arr = [];
+  for (let w = 0; w < 48; w++){
+    const blk = blocks.find(b => w >= b.from && w <= b.to) || blocks[blocks.length - 1];
+    const pos = w - blk.from;
+    const focus = blk.f[pos % blk.f.length];
+    const ws = weekStart(w);
+
+    // каникулы — если хотя бы один день недели попадает
+    const hol = holidayOf(ws) || holidayOf(addDays(ws, 2)) || holidayOf(addDays(ws, 5)) || '';
+    const load = hol ? 'Восстановительная' : LOADS[pos % 4];
+
+    const sessions = g.schedule.map((s, si) => {
+      const offset = (s.day + 6) % 7; // 0=Пн, 6=Вс
+      const d = addDays(ws, offset);
+      return buildSession(g.level, focus, si, d, s);
+    });
+
+    arr.push({
+      week: w + 1,
+      start: ws,
+      block: blk.name,
+      focus,
+      load,
+      holiday: hol,
+      sessions
+    });
+  }
+  return arr;
+}
+
+/* ==========================================================
+   РЕНДЕР ПЛАНА
+   ========================================================== */
+function renderGrpSel(){
+  const el = $('#grpSel');
+  if (!el) return;
+  el.innerHTML = '';
+  GROUPS.forEach(g => {
+    const b = document.createElement('button');
+    b.className = 'grp' + (g.id === curGrp ? ' on' : '');
+    b.innerHTML = `${g.label}<small>${g.level} лет · ${g.schedule.length} зан.</small>`;
+    b.onclick = () => {
+      curGrp = g.id;
+      curWeek = 0;
+      curYear = null;
+      renderPlan();
+    };
+    el.appendChild(b);
+  });
+}
+
+function renderGrpInfo(){
+  const g = getGrp();
+  const el = $('#grpInfo');
+  if (!el) return;
+  const days = g.schedule.map(s => `<span class="b">${DAYN[s.day]} ${s.time}</span>`).join(' ');
+  el.innerHTML = `<div class="card">
+    <h2>${g.label} · ${g.level} лет</h2>
+    <div class="meta">${g.note || ''}</div>
+    <div style="margin-top:6px">${days}</div>
+  </div>`;
+}
+
+function renderWGrid(){
+  const el = $('#wgrid');
+  if (!el) return;
+  el.innerHTML = '';
+  if (!curYear) curYear = buildGroupYear(getGrp());
+
+  const months = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+  let lm = -1;
+
+  curYear.forEach((w, i) => {
+    const m = w.start.getMonth();
+    if (m !== lm){
+      lm = m;
+      const lab = document.createElement('div');
+      lab.className = 'ml';
+      lab.textContent = months[m];
+      el.appendChild(lab);
+    }
+    const c = document.createElement('button');
+    c.className = 'wk' + (i === curWeek ? ' on' : '');
+    c.innerHTML = `<b>Нед. ${w.week}</b>${fmt(w.start)}${w.holiday ? '<div class="h">' + w.holiday + '</div>' : ''}`;
+    c.onclick = () => {
+      curWeek = i;
+      renderWGrid();
+      renderWDetail();
+      window.scrollTo({top:0, behavior:'smooth'});
+    };
+    el.appendChild(c);
+  });
+}
+
+function doneKey(gid, w, si){ return 'artkelo_done_' + gid + '_' + w + '_' + si; }
+function isDone(k){ return localStorage.getItem(k) === '1'; }
+function toggleDone(k, v){ if (v) localStorage.setItem(k, '1'); else localStorage.removeItem(k); }
+
+function renderWDetail(){
+  const g = getGrp();
+  if (!curYear) curYear = buildGroupYear(g);
+  const w = curYear[curWeek];
+  if (!w) return;
+
+  const end = addDays(w.start, 6);
+  let html = `<div class="card">
+    <h2>Неделя ${w.week} · ${FN[w.focus] || w.focus}</h2>
+    <div class="meta">${fmt(w.start)} — ${fmt(end)} · ${w.block}</div>
+    <span class="b k">${g.label}</span>
+    <span class="b">${w.load}</span>
+    <span class="b g">${w.sessions.length} тренировки</span>
+    ${w.holiday ? '<span class="b r">' + w.holiday + '</span>' : ''}
+    <div class="tools">
+      <button class="btn" onclick="printCurWeek()">Печать недели</button>
+      <button class="btn alt" onclick="window.scrollTo({top:0,behavior:'smooth'})">Наверх</button>
+    </div>
+  </div>`;
+
+  w.sessions.forEach((s, si) => {
+    const key = doneKey(g.id, w.week, si);
+    html += `<div class="sess">
+      <div class="sess-head">
+        <div>
+          <div class="dn">${s.dayFull}</div>
+          <div class="dt">${s.date} · ${s.time}</div>
+          ${s.note ? '<div class="ti">' + s.note + '</div>' : ''}
+          ${s.holiday ? '<div class="ti" style="background:#ffe0e0;color:#c00">' + s.holiday + '</div>' : ''}
+        </div>
+      </div>
+      <div class="sess-focus">${FN[w.focus] || w.focus}</div>`;
+
+    s.phases.forEach(ph => {
+      html += `<div class="phase ${ph.type}">
+        <div class="phase-h">
+          <span>${ph.name}</span>
+          <span class="ph-time">${ph.time}</span>
+        </div>`;
+      ph.items.forEach((it, idx) => {
+        const e = EX[it.id];
+        if (!e) return;
+        html += `<div class="exr" onclick="openEx('${it.id}')">
+          ${svgOf(e.svg)}
+          <div class="t"><b>${idx+1}. ${e.name}</b><span>${e.desc}</span></div>
+          <div class="d">${it.dose}</div>
+        </div>`;
+      });
+      html += `</div>`;
+    });
+
+    html += `<label class="done">
+      <input type="checkbox" ${isDone(key) ? 'checked' : ''} onchange="toggleDone('${key}', this.checked)">
+      Тренировка выполнена
+    </label></div>`;
+  });
+
+  $('#wdetail').innerHTML = html;
+}
+
+function renderPlan(){
+  if (!GROUPS.find(g => g.id === curGrp)) curGrp = GROUPS[0].id;
+  curYear = buildGroupYear(getGrp());
+  renderGrpSel();
+  renderGrpInfo();
+  renderWGrid();
+  renderWDetail();
+}
+
+/* ==========================================================
+   РЕДАКТОР ГРУПП
+   ========================================================== */
+function renderGrpEditor(){
+  const el = $('#grpEditor');
+  if (!el) return;
+  el.innerHTML = '';
+  GROUPS.forEach(g => {
+    const c = document.createElement('div');
+    c.className = 'gcard';
+    c.innerHTML = `
+      <div class="gtitle">
+        <input type="text" value="${g.label}" onchange="editGrpField('${g.id}','label',this.value)" placeholder="Название">
+        <select onchange="editGrpField('${g.id}','level',this.value)">
+          ${['6-8','9-12','13-15'].map(l => `<option value="${l}"${l === g.level ? ' selected' : ''}>${l} лет</option>`).join('')}
+        </select>
+        <span class="sm">занятий: ${g.schedule.length}</span>
+      </div>
+      <div class="row-mini">
+        <textarea onchange="editGrpField('${g.id}','note',this.value)" style="width:100%;min-height:42px;padding:6px;font-size:12px;border:2px solid #E3E3E3;border-radius:6px;font-family:inherit" placeholder="Заметка по группе">${g.note || ''}</textarea>
+      </div>
+      <table class="sched">
+        <tr><th style="width:120px">День</th><th style="width:130px">Время</th><th>Заметка</th><th style="width:36px"></th></tr>
+        ${g.schedule.map((s, i) => `<tr>
+          <td>
+            <select onchange="editSess('${g.id}',${i},'day',this.value)">
+              ${[1,2,3,4,5,6,0].map(d => `<option value="${d}"${d === s.day ? ' selected' : ''}>${DAYF[d]}</option>`).join('')}
+            </select>
+          </td>
+          <td><input type="text" value="${s.time}" onchange="editSess('${g.id}',${i},'time',this.value)"></td>
+          <td><input type="text" value="${s.note || ''}" onchange="editSess('${g.id}',${i},'note',this.value)"></td>
+          <td><button class="btn red sm" onclick="delSess('${g.id}',${i})">×</button></td>
+        </tr>`).join('')}
+      </table>
+      <button class="btn alt sm" onclick="addSess('${g.id}')">+ добавить занятие</button>
+    `;
+    el.appendChild(c);
+  });
+}
+
+/* ==========================================================
+   МОДАЛКА УПРАЖНЕНИЯ
+   ========================================================== */
+function openEx(id){
+  const e = EX[id];
+  if (!e) return;
+  const uses = [];
+  GROUPS.forEach(g => {
+    const y = buildGroupYear(g);
+    y.forEach(w => w.sessions.forEach(s => s.phases.forEach(ph => ph.items.forEach(it => {
+      if (it.id === id) uses.push(g.label + ' · нед. ' + w.week);
+    }))));
+  });
+  const uniq = [...new Set(uses)];
+
+  $('#mc').innerHTML = `
+    <button class="x" onclick="closeModal()">×</button>
+    <h2>${e.name}</h2>
+    <div style="margin:6px 0">
+      <span class="tag">${e.cat}</span>
+      ${e.ages.map(a => `<span class="tag g">${a} лет</span>`).join('')}
+    </div>
+    <div class="svgbox">${svgOf(e.svg)}</div>
+    <div class="f"><div class="l">Описание</div><div class="v">${e.desc}</div></div>
+    <div class="f"><div class="l">Методическое указание</div><div class="v">${e.cue}</div></div>
+    <div class="f"><div class="l">Дозировка</div><div class="v">${e.dose}</div></div>
+    <div class="f"><div class="l">Инвентарь</div><div class="v">${e.eq}</div></div>
+    <div class="f"><div class="l">Источник</div><div class="v">${e.src}</div></div>
+    <div class="f"><div class="l">Используется в плане</div><div class="v">${uniq.length ? uniq.slice(0, 10).join(', ') + (uniq.length > 10 ? ' и др.' : '') : '—'}</div></div>
+    <div class="tools">
+      <button class="btn" onclick="addB('${e.id}');closeModal()">Добавить в конструктор</button>
+      <button class="btn alt" onclick="closeModal()">Закрыть</button>
+    </div>`;
+  $('#mb').classList.add('on');
+}
+
+function closeModal(){ $('#mb').classList.remove('on'); }
+$('#mb').onclick = e => { if (e.target.id === 'mb') closeModal(); };
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ==========================================================
+   БИБЛИОТЕКА
+   ========================================================== */
+const CATS = [...new Set(Object.values(EX).map(e => e.cat))].sort();
+let curCat = 'all', curQ = '', curAF = 'all';
+
+function renderCatF(){
+  const el = $('#catF');
+  if (!el) return;
+  el.innerHTML = '';
+  const mk = (t, v) => {
+    const b = document.createElement('button');
+    b.className = 'chip' + (v === curCat ? ' on' : '');
+    b.textContent = t;
+    b.onclick = () => { curCat = v; renderCatF(); renderLib(); };
+    el.appendChild(b);
+  };
+  mk('Все', 'all');
+  CATS.forEach(c => mk(c, c));
+}
+
+function renderAgeF(){
+  const el = $('#ageF');
+  if (!el) return;
+  el.innerHTML = '';
+  const mk = (t, v) => {
+    const b = document.createElement('button');
+    b.className = 'chip' + (v === curAF ? ' on' : '');
+    b.textContent = t;
+    b.onclick = () => { curAF = v; renderAgeF(); renderLib(); };
+    el.appendChild(b);
+  };
+  mk('Все', 'all');
+  ['6-8','9-12','13-15'].forEach(a => mk(a + ' лет', a));
+}
+
+function renderLib(){
+  const el = $('#libGrid');
+  if (!el) return;
+  el.innerHTML = '';
+  const list = Object.values(EX).filter(e => {
+    if (curCat !== 'all' && e.cat !== curCat) return false;
+    if (curAF !== 'all' && !e.ages.includes(curAF)) return false;
+    if (curQ){
+      const q = curQ.toLowerCase();
+      if (!e.name.toLowerCase().includes(q) && !e.desc.toLowerCase().includes(q)) return false;
+    }
+    return true;
+  });
+  $('#cnt').textContent = 'Найдено: ' + list.length + ' из ' + Object.keys(EX).length;
+  list.forEach(e => {
+    const c = document.createElement('div');
+    c.className = 'lib';
+    c.onclick = () => openEx(e.id);
+    c.innerHTML = `<div class="top">${svgOf(e.svg)}<div><b>${e.name}</b><div class="sm">${e.cat}</div></div></div>
+      <p>${e.desc}</p>
+      <div>${e.ages.map(a => `<span class="tag g">${a}</span>`).join('')}</div>`;
+    el.appendChild(c);
+  });
+}
+
+$('#q').oninput = e => { curQ = e.target.value; renderLib(); };
+
+function exportBase(){
+  const data = {
+    season: SEASON,
+    groups: GROUPS,
+    exercises: EX,
+    blocks: BLOCKS,
+    warmups: WARMUPS,
+    main: MAIN,
+    cooldowns: COOLDOWNS
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'artkelo-base.json';
+  a.click();
+}
+
+/* ==========================================================
+   КОНСТРУКТОР
+   ========================================================== */
+let B = {grpId: GROUPS[0].id, title:'', items:[]};
+let bCat = 'all';
+
+function renderBuilder(){
+  const ae = $('#bGrp');
+  if (!ae) return;
+  if (!ae.options.length){
+    GROUPS.forEach(g => ae.add(new Option(g.label, g.id)));
+  }
+  if (!GROUPS.find(g => g.id === B.grpId)) B.grpId = GROUPS[0].id;
+  ae.value = B.grpId;
+  $('#bTitle').value = B.title;
+
+  const el = $('#bItems');
+  if (!B.items.length){
+    el.innerHTML = '<div class="sm">Пока пусто. Добавьте упражнения из списка справа.</div>';
+  } else {
+    el.innerHTML = B.items.map((it, i) => {
+      const e = EX[it.id];
+      if (!e) return '';
+      return `<div class="item">${svgOf(e.svg)}
+        <div class="g"><b>${i+1}. ${e.name}</b><span class="sm">${e.cat}</span>
+          <input type="text" value="${it.dose}" onchange="B.items[${i}].dose=this.value">
+        </div>
+        <button class="btn alt sm" onclick="mvB(${i},-1)">↑</button>
+        <button class="btn alt sm" onclick="mvB(${i},1)">↓</button>
+        <button class="btn red sm" onclick="rmB(${i})">×</button>
+      </div>`;
+    }).join('');
+  }
+  renderSaved();
+  renderPick();
+}
+
+function mvB(i, d){
+  const j = i + d;
+  if (j < 0 || j >= B.items.length) return;
+  const t = B.items[i]; B.items[i] = B.items[j]; B.items[j] = t;
+  renderBuilder();
+}
+function rmB(i){ B.items.splice(i, 1); renderBuilder(); }
+function addB(id){ if (!EX[id]) return; B.items.push({id, dose: EX[id].dose}); renderBuilder(); }
+function clearB(){ B = {grpId: B.grpId, title:'', items:[]}; renderBuilder(); }
+
+function renderPick(){
+  const el = $('#bPick');
+  if (!el) return;
+  el.innerHTML = '';
+  const q = ($('#bq').value || '').toLowerCase();
+  const catEl = $('#bCat');
+  catEl.innerHTML = '';
+  const mk = (t, v) => {
+    const b = document.createElement('button');
+    b.className = 'chip' + (v === bCat ? ' on' : '');
+    b.textContent = t;
+    b.onclick = () => { bCat = v; renderPick(); };
+    catEl.appendChild(b);
+  };
+  mk('Все', 'all');
+  CATS.forEach(c => mk(c, c));
+
+  Object.values(EX).filter(e => {
+    if (bCat !== 'all' && e.cat !== bCat) return false;
+    if (q && !e.name.toLowerCase().includes(q)) return false;
+    return true;
+  }).forEach(e => {
+    const d = document.createElement('div');
+    d.className = 'item';
+    d.innerHTML = `${svgOf(e.svg)}
+      <div class="g"><b>${e.name}</b><span class="sm">${e.cat}</span></div>
+      <button class="btn sm" onclick="addB('${e.id}')">+</button>`;
+    el.appendChild(d);
+  });
+}
+
+$('#bq').oninput = renderPick;
+$('#bGrp').onchange = e => { B.grpId = e.target.value; };
+$('#bTitle').oninput = e => { B.title = e.target.value; };
+
+function allSaved(){ return lsGet('artkelo_custom', []); }
+
+function renderSaved(){
+  const el = $('#bSaved');
+  if (!el) return;
+  const arr = allSaved();
+  if (!arr.length){ el.innerHTML = '<div class="sm">Сохранённых тренировок нет.</div>'; return; }
+  el.innerHTML = arr.map((s, i) => {
+    const g = GROUPS.find(x => x.id === s.grpId);
+    return `<div class="item">
+      <div class="g"><b>${s.title}</b><span class="sm">${g ? g.label : '—'} · ${s.items.length} упр. · ${s.date || ''}</span></div>
+      <button class="btn alt sm" onclick="loadS(${i})">Открыть</button>
+      <button class="btn alt sm" onclick="printS(${i})">Печать</button>
+      <button class="btn red sm" onclick="delS(${i})">×</button>
+    </div>`;
+  }).join('');
+}
+
+function saveSess(){
+  if (!B.title.trim()){ alert('Введите название тренировки'); return; }
+  if (!B.items.length){ alert('Добавьте хотя бы одно упражнение'); return; }
+  const arr = allSaved();
+  arr.push({
+    grpId: B.grpId,
+    title: B.title.trim(),
+    items: B.items.map(x => ({id: x.id, dose: x.dose})),
+    date: new Date().toLocaleDateString('ru-RU')
+  });
+  lsSet('artkelo_custom', arr);
+  renderSaved();
+  alert('Тренировка сохранена');
+}
+
+function loadS(i){
+  const s = allSaved()[i];
+  if (!s) return;
+  B = {grpId: s.grpId, title: s.title, items: s.items.map(x => ({id: x.id, dose: x.dose}))};
+  renderBuilder();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function delS(i){
+  if (!confirm('Удалить тренировку?')) return;
+  const arr = allSaved();
+  arr.splice(i, 1);
+  lsSet('artkelo_custom', arr);
+  renderSaved();
+}
+
+function sessionHTML(s){
+  const g = GROUPS.find(x => x.id === s.grpId);
+  let h = `<div class="pcard"><h3>${s.title}</h3><div class="pm">${g ? g.label : '—'} · ${s.date || ''}</div><ol>`;
+  s.items.forEach(it => {
+    const e = EX[it.id];
+    if (e) h += `<li><b>${e.name}</b> — ${it.dose}</li>`;
+  });
+  return h + '</ol></div>';
+}
+
+function printS(i){
+  const s = allSaved()[i];
+  if (!s) return;
+  printHTML('<div class="pgrid">' + sessionHTML(s) + '</div>');
+}
+
+function printBuilder(){
+  printHTML('<div class="pgrid">' + sessionHTML({
+    grpId: B.grpId,
+    title: B.title || 'Тренировка',
+    items: B.items,
+    date: new Date().toLocaleDateString('ru-RU')
+  }) + '</div>');
+}
+
+/* ==========================================================
+   ТЕСТЫ
+   ========================================================== */
+const TESTS = [
+  {id:'run10', n:'Бег 10 м, с'},
+  {id:'run30', n:'Бег 30 м, с'},
+  {id:'shuttle', n:'Челночный 3×10 м, с'},
+  {id:'longjump', n:'Прыжок в длину, см'},
+  {id:'juggle', n:'Жонглирование, раз'},
+  {id:'pass', n:'Передача в цель, из 5'}
+];
+
+function allTests(){ return lsGet('artkelo_tests', []); }
+
+function renderTestForm(){
+  const ae = $('#tGrp');
+  if (!ae) return;
+  if (!ae.options.length){
+    GROUPS.forEach(g => ae.add(new Option(g.label, g.id)));
+  }
+  const el = $('#tFields');
+  el.innerHTML = TESTS.map(t => `<div class="f"><div class="l">${t.n}</div><input type="text" id="tv_${t.id}" style="width:90px"></div>`).join('');
+  if (!$('#tDate').value){
+    $('#tDate').value = new Date().toISOString().slice(0, 10);
+  }
+}
+
+function saveTest(){
+  const name = $('#tName').value.trim();
+  if (!name){ alert('Введите ФИО'); return; }
+  const vals = {};
+  TESTS.forEach(t => { vals[t.id] = $('#tv_' + t.id).value; });
+  const arr = allTests();
+  arr.push({
+    id: Date.now(),
+    athlete: name,
+    grpId: $('#tGrp').value,
+    date: $('#tDate').value,
+    vals
+  });
+  lsSet('artkelo_tests', arr);
+  renderTests();
+  alert('Результат сохранён');
+}
+
+function renderTests(){
+  const arr = allTests();
+  const ath = [...new Set(arr.map(r => r.athlete))];
+  const ca = $('#chAth');
+  const ct = $('#chT');
+  const pa = ca.value;
+  const pt = ct.value;
+  ca.innerHTML = '';
+  ct.innerHTML = '';
+  if (!ath.length){
+    ca.innerHTML = '<option value="">—</option>';
+  } else {
+    ath.forEach(a => ca.add(new Option(a, a)));
+  }
+  TESTS.forEach(t => ct.add(new Option(t.n, t.id)));
+  if (pa && ath.includes(pa)) ca.value = pa;
+  if (pt) ct.value = pt;
+  ca.onchange = drawChart;
+  ct.onchange = drawChart;
+
+  const tb = $('#tTable');
+  if (!arr.length){
+    tb.innerHTML = '<div class="sm">Результатов пока нет.</div>';
+  } else {
+    let h = '<table><tr><th>Дата</th><th>ФИО</th><th>Группа</th>';
+    TESTS.forEach(t => h += '<th>' + t.n + '</th>');
+    h += '<th></th></tr>';
+    arr.slice().reverse().forEach((r, i) => {
+      const idx = arr.length - 1 - i;
+      const g = GROUPS.find(x => x.id === r.grpId);
+      h += `<tr><td>${r.date}</td><td>${r.athlete}</td><td>${g ? g.label : '—'}</td>`;
+      TESTS.forEach(t => h += `<td>${r.vals[t.id] || ''}</td>`);
+      h += `<td><button class="btn red sm" onclick="delTest(${idx})">×</button></td></tr>`;
+    });
+    tb.innerHTML = h + '</table>';
+  }
+  drawChart();
+}
+
+function delTest(i){
+  const arr = allTests();
+  arr.splice(i, 1);
+  lsSet('artkelo_tests', arr);
+  renderTests();
+}
+
+function drawChart(){
+  const cv = $('#chart');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  ctx.clearRect(0, 0, W, H);
+  const ath = $('#chAth').value;
+  const tid = $('#chT').value;
+
+  if (!ath || !tid){
+    ctx.fillStyle = '#999';
+    ctx.font = '14px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('Добавьте результат и выберите спортсмена', 20, 30);
+    return;
+  }
+
+  let pts = allTests()
+    .filter(r => r.athlete === ath && r.vals[tid] !== '' && r.vals[tid] != null)
+    .map(r => ({d: r.date, v: parseFloat(r.vals[tid])}))
+    .filter(p => !isNaN(p.v));
+  pts.sort((a, b) => a.d.localeCompare(b.d));
+
+  if (!pts.length){
+    ctx.fillStyle = '#999';
+    ctx.font = '14px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('Нет данных по этому тесту', 20, 30);
+    return;
+  }
+
+  const pad = {l: 52, r: 20, t: 20, b: 42};
+  let mn = Math.min(...pts.map(p => p.v));
+  let mx = Math.max(...pts.map(p => p.v));
+  if (mn === mx){ mn -= 1; mx += 1; }
+
+  const x = i => pts.length === 1
+    ? pad.l + (W - pad.l - pad.r) / 2
+    : pad.l + i * (W - pad.l - pad.r) / (pts.length - 1);
+  const y = v => H - pad.b - (v - mn) / (mx - mn) * (H - pad.t - pad.b);
+
+  ctx.strokeStyle = '#eee';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++){
+    const yy = pad.t + i * (H - pad.t - pad.b) / 4;
+    ctx.beginPath();
+    ctx.moveTo(pad.l, yy);
+    ctx.lineTo(W - pad.r, yy);
+    ctx.stroke();
+  }
+
+  ctx.strokeStyle = '#333';
+  ctx.beginPath();
+  ctx.moveTo(pad.l, pad.t);
+  ctx.lineTo(pad.l, H - pad.b);
+  ctx.lineTo(W - pad.r, H - pad.b);
+  ctx.stroke();
+
+  ctx.fillStyle = '#666';
+  ctx.font = '11px Arial';
+  ctx.textAlign = 'right';
+  for (let i = 0; i <= 4; i++){
+    const v = mx - (mx - mn) * i / 4;
+    const yy = pad.t + i * (H - pad.t - pad.b) / 4;
+    ctx.fillText(v.toFixed(1), pad.l - 6, yy + 4);
+  }
+
+  ctx.textAlign = 'center';
+  const step = Math.max(1, Math.ceil(pts.length / 8));
+  pts.forEach((p, i) => {
+    if (i % step === 0 || i === pts.length - 1){
+      ctx.fillText(p.d.slice(0, 5), x(i), H - pad.b + 16);
+    }
+  });
+
+  ctx.strokeStyle = '#E6C200';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  pts.forEach((p, i) => {
+    if (i) ctx.lineTo(x(i), y(p.v));
+    else ctx.moveTo(x(i), y(p.v));
+  });
+  ctx.stroke();
+
+  pts.forEach((p, i) => {
+    ctx.fillStyle = '#111';
+    ctx.beginPath();
+    ctx.arc(x(i), y(p.v), 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.beginPath();
+    ctx.arc(x(i), y(p.v), 2, 0, Math.PI * 2);
+    ctx.fill();
+  });
+}
+
+function exportCSV(){
+  const arr = allTests();
+  if (!arr.length){ alert('Нет данных'); return; }
+  let s = 'Дата;ФИО;Группа;' + TESTS.map(t => t.n).join(';') + '\n';
+  arr.forEach(r => {
+    const g = GROUPS.find(x => x.id === r.grpId);
+    s += r.date + ';' + r.athlete + ';' + (g ? g.label : '') + ';' + TESTS.map(t => (r.vals[t.id] || '')).join(';') + '\n';
+  });
+  const blob = new Blob(['\ufeff' + s], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'artkelo-tests.csv';
+  a.click();
+}
+
+/* ==========================================================
+   ПЕЧАТЬ
+   ========================================================== */
+function printHTML(html){
+  $('#printArea').innerHTML = html;
+  document.body.classList.add('printing');
+  setTimeout(() => window.print(), 80);
+}
+window.onafterprint = () => document.body.classList.remove('printing');
+
+function sessionCardHTML(s, groupLabel, focus, load, holiday){
+  let h = `<div class="pcard">
+    <h3>${s.dayFull} · ${s.time} · ${groupLabel}</h3>
+    <div class="pm">${s.date} · ${FN[focus] || focus} · ${load}${holiday ? ' · ' + holiday : ''}</div>`;
+  s.phases.forEach(ph => {
+    h += `<div class="ph-h">${ph.name} (${ph.time})</div><ol>`;
+    ph.items.forEach(it => {
+      const e = EX[it.id];
+      if (e) h += `<li><b>${e.name}</b> — ${it.dose}. <i>${e.cue}</i></li>`;
+    });
+    h += '</ol>';
+  });
+  return h + '</div>';
+}
+
+function printCurWeek(){
+  const g = getGrp();
+  if (!curYear) curYear = buildGroupYear(g);
+  const w = curYear[curWeek];
+  if (!w) return;
+  let h = '<div class="pgrid">';
+  w.sessions.forEach(s => {
+    h += sessionCardHTML(s, g.label, w.focus, w.load, w.holiday);
+  });
+  h += '</div>';
+  printHTML(h);
+}
+
+function printMonth(){
+  const grpId = $('#pGrp').value;
+  const m = parseInt($('#pMonth').value, 10);
+  const g = GROUPS.find(x => x.id === grpId);
+  if (!g) return;
+  const y = buildGroupYear(g).filter(w => w.start.getMonth() === m);
+  if (!y.length){ alert('В этом месяце нет тренировок'); return; }
+  const months = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+  let h = `<h2 style="margin:0 0 10px 0;font-size:16px">${g.label} · ${months[m]} · сезон ${SEASON}</h2><div class="pgrid">`;
+  y.forEach(w => w.sessions.forEach(s => {
+    h += sessionCardHTML(s, g.label, w.focus, w.load, w.holiday);
+  }));
+  h += '</div>';
+  printHTML(h);
+}
+
+function initPrint(){
+  const pa = $('#pGrp');
+  if (!pa) return;
+  pa.innerHTML = '';
+  GROUPS.forEach(g => pa.add(new Option(g.label, g.id)));
+  if (!GROUPS.find(g => g.id === pa.value)) pa.value = GROUPS[0].id;
+
+  const pm = $('#pMonth');
+  pm.innerHTML = '';
+  const months = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+  const order = [8, 9, 10, 11, 0, 1, 2, 3, 4, 5, 6, 7];
+  const g = GROUPS.find(x => x.id === pa.value) || GROUPS[0];
+  const present = new Set(buildGroupYear(g).map(w => w.start.getMonth()));
+  order.forEach(m => {
+    if (present.has(m)) pm.add(new Option(months[m], m));
+  });
+  if (!pm.options.length) order.forEach(m => pm.add(new Option(months[m], m)));
+
+  pa.onchange = initPrint;
+}
+
+/* ==========================================================
+   МЕТОДИКА
+   ========================================================== */
+function renderMethod(){
+  const el = $('#p-met');
+  if (!el) return;
+
+  let groupsHTML = '';
+  GROUPS.forEach(g => {
+    const days = g.schedule.map(s => `<b>${DAYN[s.day]}</b> ${s.time}`).join(' · ');
+    groupsHTML += `<h3>${g.label} · ${g.level} лет</h3>
+      <p>${g.note || 'Описание группы не заполнено.'}</p>
+      <p><span class="src">Расписание:</span> ${days}</p>`;
+  });
+
+  el.innerHTML = `
+    <h2>1. Структура года</h2>
+    <p>Сезон начинается с первого понедельника сентября и длится 48 недель. Год разбит на 5 блоков (мезоциклов). Внутри блока каждая неделя имеет одну ведущую направленность — микроцикл. Нагрузка чередуется: втягивающая → развивающая → ударная → восстановительная. Недели, попадающие на школьные каникулы, помечаются красным, нагрузка в них — восстановительная.</p>
+    <p class="src">Источник: В.П. Губа, А.В. Лексаков, А.В. Антипов. Интегральная подготовка футболистов, 2010 — структура мезо- и микроциклов.</p>
+
+    <h2>2. Структура отдельного занятия</h2>
+    <p>Каждое занятие в плане состоит из трёх фаз:</p>
+    <ul>
+      <li><b>Разминка (10–15 мин)</b> — лёгкий бег, ОРУ, беговые упражнения, активация. Для каждого уровня — 3 варианта, чередуются по занятиям.</li>
+      <li><b>Основная часть (30–45 мин)</b> — упражнения ведущей направленности недели. Включает технические, тактические и игровые задания. Для каждой направленности — 2–3 варианта на уровень.</li>
+      <li><b>Заминка (5–10 мин)</b> — восстановительная ходьба, растяжка, дыхание. 3 варианта на уровень.</li>
+    </ul>
+    <p>Упражнения на координацию и технику выполняются в начале основной части, не на фоне утомления.</p>
+    <p class="src">Источник: А.В. Лексаков и др. Комплексы упражнений для юных футболистов 6–12 лет, введение; Губа, гл. 1.</p>
+
+    <h2>3. Возрастные уровни</h2>
+    <p><b>6–8 лет.</b> Этап начального обучения. Главное — интерес, общая координация, чувство мяча, подвижные игры. Скоростно-силовую и тактическую части не применяем в явном виде.</p>
+    <p><b>9–12 лет.</b> Этап углублённой базовой подготовки. Устойчивая базовая техника (передачи, приём, ведение, удары), координация, тактика малых групп (2v1, 3v2, квадраты), начало силовой подготовки с собственным весом.</p>
+    <p><b>13–15 лет.</b> Этап спортивной специализации. Скоростно-силовая подготовка, групповая тактика (прессинг, зонная оборона, позиционное нападение), стандартные положения, интегральные задания.</p>
+    <p class="src">Источник: Д.К. Мамуров. Физическая подготовка юных футболистов 11–15 лет, 2025; А.К. Беляков. Особенности подготовки юных футболистов (Сент-Этьен), 2012.</p>
+
+    <h2>4. Группы и расписание</h2>
+    <p>Ниже — описание каждой группы. Расписание можно изменить во вкладке «Группы».</p>
+    ${groupsHTML}
+
+    <h2>5. Тестирование</h2>
+    <p>Рекомендуется 2 раза в сезон — октябрь и апрель. Тесты: бег 10 м, бег 30 м, челночный бег 3×10 м, прыжок в длину с места, жонглирование, передача в цель. Результаты вводятся во вкладке «Тесты», там же строится график динамики.</p>
+
+    <h2>6. Источники базы</h2>
+    <ul>
+      <li>А.В. Лексаков, М.М. Полишкис, С.А. Российский, А.И. Соколов. Комплексы упражнений для тренировки юных футболистов 6–12 лет. РФС.</li>
+      <li>В.П. Губа, А.В. Лексаков, А.В. Антипов. Интегральная подготовка футболистов. Советский спорт, 2010.</li>
+      <li>Д.К. Мамуров. Физическая подготовка юных футболистов 11–15 лет. Прокопьевск, 2025.</li>
+      <li>А.К. Беляков. Особенности подготовки юных футболистов (на примере команды «Сент-Этьен», Франция). ФЦПСР, 2012.</li>
+    </ul>
+  `;
+}
+
+/* ==========================================================
+   ИНИЦИАЛИЗАЦИЯ
+   ========================================================== */
+function init(){
+  const sl = $('#seasonLbl');
+  if (sl) sl.textContent = 'Мурино · сезон ' + SEASON;
+  const st = $('#status');
+  if (st) st.textContent = '✅ Файл загружен · ' + Object.keys(EX).length + ' упражнений · ' + GROUPS.length + ' групп';
+
+  renderPlan();
+  renderGrpEditor();
+  renderCatF();
+  renderAgeF();
+  renderLib();
+  renderBuilder();
+  renderTestForm();
+  renderTests();
+  initPrint();
+  renderMethod();
+}
+
+init();
+</script>
+</body>
+</html>
